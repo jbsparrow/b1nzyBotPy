@@ -3,8 +3,16 @@ from discord.ext import commands
 import asyncio
 import discord
 import mtranslate
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 intents = discord.Intents.default()
 intents.members = True
+intents.messages = True
+
+YOUR_USER_ID = os.getenv('YOUR_USER_ID')
 
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
@@ -27,7 +35,7 @@ class Utilities(commands.Cog):
     @commands.is_owner()
     async def suggestlogs(self, ctx):
         # put your user ID below to have logs sent to you.
-        user = self.bot.get_user(329377582476951552)
+        user = self.bot.get_user(YOUR_USER_ID)
         await user.send(file=discord.File("cogs/suggestions.txt"))
 
     #   Translate the inputted text to english.
@@ -160,18 +168,6 @@ class Utilities(commands.Cog):
             await ctx.send('You do not have the required permissions to use this.')
         elif isinstance(error, commands.errors.BotMissingPermissions):
             await ctx.send('I do not have the required permissions to use this.')
-
-        # general error handling.
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.UserInputError):
-            await ctx.send(f'Incorrect arguments passed, please try again.')
-            if isinstance(error, commands.CommandNotFound):
-                await ctx.send(f'That command does not exist.')
-            if isinstance(error, commands.MissingPermissions):
-                await ctx.send(f'<@{ctx.author.id}>, You do not have the required permissions to do that.')
-            if isinstance(error, commands.CommandOnCooldown):
-                await ctx.send(f'<@{ctx.author.id}>, this command is on cooldown for you!')
 
 
 def setup(bot):
