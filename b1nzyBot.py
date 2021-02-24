@@ -1,37 +1,44 @@
 from itertools import cycle
 import random
-import os
-from dotenv import load_dotenv
 import discord
 from discord.ext import commands, tasks
+import os
+from dotenv import load_dotenv
+
+from cogs.Currency import _save
+
 intents = discord.Intents.default()
 intents.members = True
 Guild = discord.guild.Guild
 
+
 load_dotenv()
-PRIVATE_BOT_TOKEN = os.getenv('PRIVATE_BOT_TOKEN')
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+DEATH_CHANNEL = os.getenv('DEATH_CHANNEL')
+YOUR_USER_ID = os.getenv('YOUR_USER_ID')
 
 
 def get_prefix(bot, message):
-
-
 
     prefixes = ['$', 'b1nzy ']
 
     # prefix stuff, allows mentioning the bot as a prefix
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
+
 # loads cogs upon bot start.
 initial_extensions = ['cogs.Miscellaneous',
                       'cogs.Utilities',
+                      'cogs.Currency',
                       'cogs.Members',
                       'cogs.Simple',
                       'cogs.Voice',
                       'cogs.Owner',
                       'cogs.Fun']
 
-bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 
+bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 
 
 if __name__ == '__main__':
@@ -62,19 +69,21 @@ async def change_status():
 # random user died loop
 @tasks.loop(hours=3)
 async def death():
-    autopsy = ['died from stupidity', 'died from embarrassment', 'got hit by a frog and died from sliminess', 'fell off a cliff', 'died from eating too many children', 'died from not wearing a mask']
-# put the channel id of the channel you want death messages to send in below.
-    channel = bot.get_channel(788803275155177502)
+    # put the Channel ID of the channel you want death messages to send in below.
+    channel = bot.get_channel(DEATH_CHANNEL)
     user = [member.id for member in channel.guild.members]
+    autopsy = ['died from stupidity', 'died from embarrassment', 'got hit by a frog and died from sliminess', 'fell off a cliff', 'died from eating too many children', 'died from not wearing a mask', f'was poisoned by <@{random.choice(user)}>', f'had all their blood drained by <@{random.choice(user)}>', f'was suffocated by <@{random.choice(user)}>', 'was decapitated.', 'was hanged', f'was poisoned by <@{random.choice(user)}>']
     await channel.send(f'<@{random.choice(user)}> {random.choice(autopsy)}.')
+    _save()
 
 
 # save suggestions and logs loop
 @tasks.loop(hours=24)
 async def logs():
-# put your user ID below
-    user = bot.get_user(329377582476951552)
+    # put your User ID below
+    user = bot.get_user(YOUR_USER_ID)
     await user.send(file=discord.File("cogs/suggestions.txt"))
+    await user.send(file=discord.File("cogs/logs.txt"))
 
 
-bot.run('PRIVATE_BOT_TOKEN', bot=True, reconnect=True)
+bot.run('BOT_TOKEN', bot=True, reconnect=True)
