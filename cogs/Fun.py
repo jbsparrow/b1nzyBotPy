@@ -5,9 +5,17 @@ import aiohttp
 import discord
 import requests
 import feedparser
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
+
+
 intents = discord.Intents.default()
 intents.members = True
-
 
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
@@ -28,7 +36,7 @@ def randomhex(x):
     hex = hex + random.choice(hexvalues)
     hex = hex + random.choice(hexvalues)
     hex = hex + random.choice(hexvalues)
-    
+
     #   Convert it into an actual hex code.
     hex = int(hex, 16)
     return hex
@@ -367,7 +375,7 @@ class Fun(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         #   Put your user id here to be notified when the bot joins a guild.
-        user = self.bot.get_user(329377582476951552)
+        user = self.bot.get_user(YOUR_USER_ID)
         await user.send(f'I just joined **{guild.name}** (id: **{guild.id}**)!')
 
 

@@ -16,7 +16,7 @@ class Simple(commands.Cog):
     @commands.command()
     async def math(self, ctx, num1, operator, num2):
         """Does simple math."""
-        #   Check for operator, can only do simple math, by simple math, I mean no square roots, but it can do math with what I would consider quite large numbers.
+        #   Check for operator, can only do simple math, by simple math, that means no square roots, but it can do math with extremely large numbers.
         if operator == "+":
             num1 = int(num1)
             num2 = int(num2)

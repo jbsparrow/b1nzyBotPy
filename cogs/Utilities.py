@@ -6,14 +6,15 @@ import mtranslate
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
+
+YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
+
 
 intents = discord.Intents.default()
 intents.members = True
 intents.messages = True
-
-YOUR_USER_ID = os.getenv('YOUR_USER_ID')
-
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
 guild = discord.guild

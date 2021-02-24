@@ -1,7 +1,14 @@
 from discord.ext import commands
 import discord
-
 from cogs.Currency import _save
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
+
 
 client = discord.Client()
 
@@ -67,7 +74,7 @@ class OwnerCog(commands.Cog):
     @commands.is_owner()
     async def logoff(self, ctx):
         _save()
-        user = self.bot.get_user(329377582476951552)
+        user = self.bot.get_user(YOUR_USER_ID)
         #   Send logs as a backup.
         await user.send(file=discord.File("cogs/logs.txt"))
         await user.send(file=discord.File("cogs/suggestions.txt"))

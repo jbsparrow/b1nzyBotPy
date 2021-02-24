@@ -16,10 +16,10 @@ currenttime = datetime.datetime.now()
 guild = discord.guild
 
 
-YOUR_USER_ID = os.getenv('YOUR_USER_ID')
-FRIEND_USER_ID = os.getenv('FRIEND_USER_ID')
-SERVER_GENERAL = os.getenv('SERVER_GENERAL')
-SERVER_BOT_COMMANDS = os.getenv('SERVER_BOT_COMMANDS')
+YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
+FRIEND_USER_ID = int(os.getenv('FRIEND_USER_ID'))
+SERVER_GENERAL = int(os.getenv('SERVER_GENERAL'))
+SERVER_BOT_COMMANDS = int(os.getenv('SERVER_BOT_COMMANDS'))
 
 
 class Miscellaneous(commands.Cog):
@@ -45,9 +45,9 @@ class Miscellaneous(commands.Cog):
         # add the channel ID for the channel you would like the message to be sent in below
         channelsend = self.bot.get_channel(SERVER_GENERAL)
         # IMPORTANT: if you do not add your user ID here and your friend's user ID below, then the command will not work.
-        # if you do not want to add a friend, remove the comment on the line below, delete the if statement that says "(329377582476951552, 477639802171424788):" and remove all instances of "user2send"
+        # if you do not want to add a friend, remove the comment on the line below, delete the if statement that says "(YOUR_USER_ID, FRIEND_USER_ID):" and remove all instances of "user2send"
         # if message.author.id = YOUR_USER_ID
-        if message.author.id in (YOUR_USER_ID, FRIEND_USER_ID):
+        if message.author.id in (YOUR_USER_ID, SERVER_GENERAL):
             await channelsend.send(f'{arg}')
             # the code below this comment is irrelevant, the only thing needed is the await channel.send and if you want you could keep that else and put a return statement after it.
             usersentembed = discord.Embed(colour=randomhex(hex))
@@ -89,7 +89,7 @@ class Miscellaneous(commands.Cog):
         # add the channel ID for the channel you would like the message to be sent in below
         channelsend = self.bot.get_channel(SERVER_BOT_COMMANDS)
         # IMPORTANT: if you do not add your user ID here and your friend's user ID below, then the command will not work.
-        # if you do not want to add a friend, remove the comment on the line below, delete the if statement that says "(329377582476951552, 477639802171424788):" and remove all instances of "user2send"
+        # if you do not want to add a friend, remove the comment on the line below, delete the if statement that says "(YOUR_USER_ID, FRIEND_USER_ID):" and remove all instances of "user2send"
         # if message.author.id = YOUR_USER_ID
         if message.author.id in (YOUR_USER_ID, FRIEND_USER_ID):
             await channelsend.send(f'{arg}')
@@ -129,6 +129,20 @@ class Miscellaneous(commands.Cog):
         user = self.bot.get_user(userid)
         await user.send(arg)
 
+    #   command to dm users, as far as I know it doesn't work and I don't care enough to fix it
+    @commands.command(hidden=True)
+    async def dmevan(self, ctx, *, message):
+        """command used to dm evan through b1nzy."""
+        user = self.bot.get_user(693114135713677353)
+        await user.send(message)
+
+    #   command to dm users, as far as I know it doesn't work and I don't care enough to fix it
+    @commands.command(hidden=True)
+    async def dmjbs(self, ctx, *, message):
+        """command used to dm evan through b1nzy."""
+        user = self.bot.get_user(329377582476951552)
+        await user.send(message)
+
     #   equivelant of genecho and botecho but everyone can use it. - Broken
     @commands.command(hidden=True)
     async def echo2(self, ctx, *channelid, message):
@@ -138,7 +152,7 @@ class Miscellaneous(commands.Cog):
 
     @commands.command(hidden=True)
     async def echo(self, ctx, *, message):
-        """allows you to talk as b1nzy. - usage: $echo <message>
+        """allows you to talk as b1nzy. - usage: $echo "message" "channel id" - If you don't use the quotes it won't work."""
         await ctx.send(f'{message}')
 
     #   command to receive suggestions because I can't think of new features for my bot.
@@ -146,7 +160,7 @@ class Miscellaneous(commands.Cog):
     async def suggest(self, ctx, *, suggestion):
         """submit ideas for new features!"""
         message = ctx.message
-        user = self.bot.get_user(YOUR_USER_ID)
+        user = self.bot.get_user(329377582476951552)
         f = open("cogs/suggestions.txt", "a")
         embed = discord.Embed(colour=randomhex(hex))
         embed.add_field(name='Author:', value=f'<@{message.author.id}>')

@@ -1,0 +1,6 @@
+.DS_Store
+cogs/__pycache__
+cogs/.DS_Store
+decommisionedCommands.py
+decommissionedCommands.txt
+.env

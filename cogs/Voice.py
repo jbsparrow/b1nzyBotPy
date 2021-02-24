@@ -4,6 +4,8 @@ import discord
 intents = discord.Intents.default()
 intents.members = True
 
+OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll', 'libopus-0.dll', 'libopus.so.0', 'libopus.0.dylib']
+
 
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
@@ -34,19 +36,10 @@ class Voice(commands.Cog):
     async def join(self, ctx):
         """joins the voice channel the user is in at time of command initiation."""
         channel = ctx.message.author.voice.channel
+        voice_client: discord.VoiceClient = discord.utils.get(self.bot.voice_clients, guild=guild)
+        audio_source = discord.FFmpegPCMAudio('audio.mp3')
         await channel.connect()
-
-        # general error handling.
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.UserInputError):
-            await ctx.send(f'Incorrect arguments passed, please try again.')
-            if isinstance(error, commands.CommandNotFound):
-                await ctx.send(f'That command does not exist.')
-            if isinstance(error, commands.MissingPermissions):
-                await ctx.send(f'<@{ctx.author.id}>, You do not have the required permissions to do that.')
-            if isinstance(error, commands.CommandOnCooldown):
-                await ctx.send(f'<@{ctx.author.id}>, this command is on cooldown for you!')
+        voice_client.play(audio_source, after=None)
 
 
 def setup(bot):
