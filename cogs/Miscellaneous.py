@@ -3,6 +3,9 @@ from discord.ext import commands
 import discord
 import os
 from dotenv import load_dotenv
+
+from cogs.Fun import randomhex
+
 load_dotenv()
 intents = discord.Intents.default()
 intents.members = True
@@ -11,6 +14,12 @@ intents.members = True
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
 guild = discord.guild
+
+
+YOUR_USER_ID = os.getenv('YOUR_USER_ID')
+FRIEND_USER_ID = os.getenv('FRIEND_USER_ID')
+SERVER_GENERAL = os.getenv('SERVER_GENERAL')
+SERVER_BOT_COMMANDS = os.getenv('SERVER_BOT_COMMANDS')
 
 
 class Miscellaneous(commands.Cog):
@@ -30,23 +39,43 @@ class Miscellaneous(commands.Cog):
         """echoes your input in general of rocketcat"""
         message = ctx.message
         # add your user ID to usersend to be notified when someone uses the command.
-        usersend = self.bot.get_user(329377582476951552)
+        usersend = self.bot.get_user(YOUR_USER_ID)
         # add a friend's user ID below for them to be notified when someone uses the command.
-        user2send = self.bot.get_user(477639802171424788)
+        user2send = self.bot.get_user(FRIEND_USER_ID)
         # add the channel ID for the channel you would like the message to be sent in below
-        channelsend = self.bot.get_channel(788803275155177502)
+        channelsend = self.bot.get_channel(SERVER_GENERAL)
         # IMPORTANT: if you do not add your user ID here and your friend's user ID below, then the command will not work.
         # if you do not want to add a friend, remove the comment on the line below, delete the if statement that says "(329377582476951552, 477639802171424788):" and remove all instances of "user2send"
-        # if message.author.id = 329377582476951552
-        if message.author.id in (329377582476951552, 477639802171424788):
+        # if message.author.id = YOUR_USER_ID
+        if message.author.id in (YOUR_USER_ID, FRIEND_USER_ID):
             await channelsend.send(f'{arg}')
             # the code below this comment is irrelevant, the only thing needed is the await channel.send and if you want you could keep that else and put a return statement after it.
-            await usersend.send(f'<@{329377582476951552}>**,**\n<@{message.author.id}>** sent **`"{arg}"`** in **<#{788803275155177502}>**.**')
-            await user2send.send(f'<@{477639802171424788}>**,**\n<@{message.author.id}>** sent **`"{arg}"`** in **<#{788803275155177502}>**.**')
+            usersentembed = discord.Embed(colour=randomhex(hex))
+
+            usersentembed.set_footer(text='User sent')
+
+            usersentembed.set_author(name='b1nzy', icon_url='https://cdn.discordapp.com/attachments/794323054317928478/794385737235562506/image.png')
+
+            usersentembed.add_field(name='Author:', value=f'<@{message.author.id}>')
+            usersentembed.add_field(name='Message:', value=f'{arg}')
+
+            usersentembed.add_field(name='Channel:', value=f'<#{SERVER_GENERAL}>')
+            await usersend.send(embed=usersentembed)
+            await user2send.send(embed=usersentembed)
             print(f'\n\nIMPORTANT\n{message.author} sent "{arg}" in {channelsend}.\nIMPORTANT\n')
         else:
-            await usersend.send(f'<@{329377582476951552}>**,**\n<@{message.author.id}>** tried to send **`"{arg}"`** in **<#{788803275155177502}>**.**')
-            await user2send.send(f'<@{477639802171424788}>**,**\n<@{message.author.id}>** tried to send **`"{arg}"`** in **<#{788803275155177502}>**.**')
+            usersentembed = discord.Embed(colour=randomhex(hex))
+
+            usersentembed.set_footer(text='User tried to send')
+
+            usersentembed.set_author(name='b1nzy', icon_url='https://cdn.discordapp.com/attachments/794323054317928478/794385737235562506/image.png')
+
+            usersentembed.add_field(name='Author:', value=f'<@{message.author.id}>')
+            usersentembed.add_field(name='Message:', value=f'{arg}')
+
+            usersentembed.add_field(name='Channel:', value=f'<#{SERVER_GENERAL}>')
+            await usersend.send(embed=usersentembed)
+            await user2send.send(embed=usersentembed)
             print(f'\n\nIMPORTANT\n{message.author} tried to send "{arg}" in {channelsend}.\nIMPORTANT\n')
 
     @commands.command(hidden=True)
@@ -54,23 +83,43 @@ class Miscellaneous(commands.Cog):
         """echoes your input in bot commands of rocketcat"""
         message = ctx.message
         # add your user ID to usersend to be notified when someone uses the command.
-        usersend = self.bot.get_user(329377582476951552)
+        usersend = self.bot.get_user(YOUR_USER_ID)
         # add a friend's user ID below for them to be notified when someone uses the command.
-        user2send = self.bot.get_user(477639802171424788)
+        user2send = self.bot.get_user(FRIEND_USER_ID)
         # add the channel ID for the channel you would like the message to be sent in below
-        channelsend = self.bot.get_channel(788825205039824907)
+        channelsend = self.bot.get_channel(SERVER_BOT_COMMANDS)
         # IMPORTANT: if you do not add your user ID here and your friend's user ID below, then the command will not work.
         # if you do not want to add a friend, remove the comment on the line below, delete the if statement that says "(329377582476951552, 477639802171424788):" and remove all instances of "user2send"
-        # if message.author.id = 329377582476951552
-        if message.author.id in (329377582476951552, 477639802171424788):
+        # if message.author.id = YOUR_USER_ID
+        if message.author.id in (YOUR_USER_ID, FRIEND_USER_ID):
             await channelsend.send(f'{arg}')
             # the code below this comment is irrelevant, the only thing needed is the await channel.send and if you want you could keep that else and put a return statement after it.
-            await usersend.send(f'<@329377582476951552>**,**\n<@{message.author.id}>** sent **`"{arg}"`** in **<#788825205039824907>**.**\n')
-            await user2send.send(f'<@477639802171424788>**,**\n<@{message.author.id}>** sent **`"{arg}"`** in **<#788825205039824907>**.**\n')
+            usersentembed = discord.Embed(colour=randomhex(hex))
+
+            usersentembed.set_footer(text='User sent')
+
+            usersentembed.set_author(name='b1nzy', icon_url='https://cdn.discordapp.com/attachments/794323054317928478/794385737235562506/image.png')
+
+            usersentembed.add_field(name='Author:', value=f'<@{message.author.id}>')
+            usersentembed.add_field(name='Message:', value=f'{arg}')
+
+            usersentembed.add_field(name='Channel:', value=f'<#{SERVER_BOT_COMMANDS}>')
+            await usersend.send(embed=usersentembed)
+            await user2send.send(embed=usersentembed)
             print(f'\n\nIMPORTANT\n{message.author} sent "{arg}" in {channelsend}.\nIMPORTANT\n')
         else:
-            await usersend.send(f'<@329377582476951552>**,**\n<@{message.author.id}>** tried to send **`"{arg}"`** in **<#788825205039824907>**.**\n')
-            await user2send.send(f'<@477639802171424788>**,**\n<@{message.author.id}>** tried to send **`"{arg}"`** in **<#788825205039824907>**.**\n')
+            usersentembed = discord.Embed(colour=randomhex(hex))
+
+            usersentembed.set_footer(text='User tried to send')
+
+            usersentembed.set_author(name='b1nzy', icon_url='https://cdn.discordapp.com/attachments/794323054317928478/794385737235562506/image.png')
+
+            usersentembed.add_field(name='Author:', value=f'<@{message.author.id}>')
+            usersentembed.add_field(name='Message:', value=f'{arg}')
+
+            usersentembed.add_field(name='Channel:', value=f'<#{SERVER_BOT_COMMANDS}>')
+            await usersend.send(embed=usersentembed)
+            await user2send.send(embed=usersentembed)
             print(f'\n\nIMPORTANT\n{message.author} tried to send "{arg}" in {channelsend}.\nIMPORTANT\n')
 
     #   command to dm users, as far as I know it doesn't work and I don't care enough to fix it
@@ -82,29 +131,37 @@ class Miscellaneous(commands.Cog):
 
     #   equivelant of genecho and botecho but everyone can use it. - Broken
     @commands.command(hidden=True)
-    async def echo(self, ctx, arg, *channelid):
+    async def echo2(self, ctx, *channelid, message):
         """allows you to talk as b1nzy. - usage: $echo "message" "channel id" - If you don't use the quotes it won't work."""
         channel = self.bot.get_channel(channelid)
-        await channel.send(f'{arg}')
+        await channel.send(f'{message}')
+
+    @commands.command(hidden=True)
+    async def echo(self, ctx, *, message):
+        """allows you to talk as b1nzy. - usage: $echo <message>
+        await ctx.send(f'{message}')
 
     #   command to receive suggestions because I can't think of new features for my bot.
     @commands.command(aliases=['suggestion'])
     async def suggest(self, ctx, *, suggestion):
         """submit ideas for new features!"""
         message = ctx.message
-        user = self.bot.get_user(329377582476951552)
+        user = self.bot.get_user(YOUR_USER_ID)
         f = open("cogs/suggestions.txt", "a")
-        await user.send(f'<@{message.author.id}> suggested: ```"{suggestion}"```')
+        embed = discord.Embed(colour=randomhex(hex))
+        embed.add_field(name='Author:', value=f'<@{message.author.id}>')
+        embed.add_field(name='Suggestion:', value=f'{suggestion}')
+        await user.send(embed=embed)
         await ctx.send(f'Your submission has been recieved, I will contact you with some questions if it is accepted.')
         f.write(f'{message.author} - <@{message.author.id}> suggested: "{suggestion}"\n')
 
     # credits for the bot, sends embed containing anybody that helped to directly, or indirectly, make b1nzyBot.
-    @commands.command()
+    @commands.command(aliases=['credit'])
     async def credits(self, ctx):
         """displays the bot's credits. included is anybody who helped me make this bot and any code that was copied from other bots."""
         embed = discord.Embed(title='Credits',
                               description="credits, anybody listed here helped me either directly or indirectly in the making of this bot.",
-                              colour=0x7289DA)
+                              colour=randomhex(hex))
         embed.set_author(name='B1nzyBot',
                          url='https://takeb1nzyto.space',
                          icon_url='https://cdn.discordapp.com/attachments/794323054317928478/794385737235562506/image.png')
@@ -114,11 +171,17 @@ class Miscellaneous(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def botstats(self, ctx):
+        """sends fake bot stats cuz I don't know how to make it send real ones and it looks really cool so why not."""
+        await ctx.send("```css\n┌───────────────────────────────────────────┐\n│Info and stats                             │\n├─────────────────────┬─────────────────────┤\n│Bot version          │v2.7.10              │\n│Library version      │JDA 3.8.3_d7c83d3    │\n│JVM version          │11.0.7+10            │\n│                     │(AdoptOpenJDK)       │\n│Available guilds     │12723                │\n│Shard                │Shard [6 / 15] (837) │\n│Uptime               │32:46                │\n│Events received      │123148               │\n│Commands executed    │120243               │\n│Audio connections    │0                    │\n│(curr. shard)        │                     │\n│CPU usage            │0%                   │\n│Memory usage         │Free: 10161MB        │\n│                     │Allocated: 12288MB   │\n│                     │Used: 2127MB         │\n│                     │Last GC: ???         │\n└─────────────────────┴─────────────────────┘\n```")
+
     # sends invite link for b1nzyBot.
     @commands.command()
     async def invite(self, ctx):
         """sends an invite link for b1nzyBot."""
-        await ctx.send('https://discord.com/api/oauth2/authorize?client_id=788978875287470091&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize&scope=bot')
+        await ctx.send('https://discord.com/api/oauth2/authorize?client_id=788978875287470091&permissions=1916267615&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize&scope=bot')
 
     # useless command used to index emotes in servers the bot is in for use in messages.
     @commands.command(hidden=True)
@@ -127,18 +190,6 @@ class Miscellaneous(commands.Cog):
         """prints all the emote details of a server in the console."""
         await ctx.channel.purge(limit=1)
         print(f'{ctx.guild.emojis}')
-
-        # general error handling.
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.UserInputError):
-            await ctx.send(f'Incorrect arguments passed, please try again.')
-            if isinstance(error, commands.CommandNotFound):
-                await ctx.send(f'That command does not exist.')
-            if isinstance(error, commands.MissingPermissions):
-                await ctx.send(f'<@{ctx.author.id}>, You do not have the required permissions to do that.')
-            if isinstance(error, commands.CommandOnCooldown):
-                await ctx.send(f'<@{ctx.author.id}>, this command is on cooldown for you!')
 
 
 # set up all command categories
