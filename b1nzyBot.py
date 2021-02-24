@@ -4,19 +4,18 @@ import discord
 from discord.ext import commands, tasks
 import os
 from dotenv import load_dotenv
-
 from cogs.Currency import _save
-
-intents = discord.Intents.default()
-intents.members = True
-Guild = discord.guild.Guild
 
 
 load_dotenv()
 
-BOT_TOKEN = os.getenv('BOT_TOKEN')
-DEATH_CHANNEL = os.getenv('DEATH_CHANNEL')
-YOUR_USER_ID = os.getenv('YOUR_USER_ID')
+YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
+SERVER_GENERAL = int(os.getenv('SERVER_GENERAL'))
+TOKEN = os.getenv('TOKEN')
+
+intents = discord.Intents.default()
+intents.members = True
+Guild = discord.guild.Guild
 
 
 def get_prefix(bot, message):
@@ -70,7 +69,7 @@ async def change_status():
 @tasks.loop(hours=3)
 async def death():
     # put the Channel ID of the channel you want death messages to send in below.
-    channel = bot.get_channel(DEATH_CHANNEL)
+    channel = bot.get_channel(SERVER_GENERAL)
     user = [member.id for member in channel.guild.members]
     autopsy = ['died from stupidity', 'died from embarrassment', 'got hit by a frog and died from sliminess', 'fell off a cliff', 'died from eating too many children', 'died from not wearing a mask', f'was poisoned by <@{random.choice(user)}>', f'had all their blood drained by <@{random.choice(user)}>', f'was suffocated by <@{random.choice(user)}>', 'was decapitated.', 'was hanged', f'was poisoned by <@{random.choice(user)}>']
     await channel.send(f'<@{random.choice(user)}> {random.choice(autopsy)}.')
@@ -86,4 +85,4 @@ async def logs():
     await user.send(file=discord.File("cogs/logs.txt"))
 
 
-bot.run('BOT_TOKEN', bot=True, reconnect=True)
+bot.run(f'{TOKEN}', bot=True, reconnect=True)
