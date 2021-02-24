@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 
+from cogs.Currency import _save
 
 client = discord.Client()
 
@@ -10,7 +11,6 @@ class OwnerCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    #   Says when the cog is online.
     @commands.Cog.listener()
     async def on_ready(self):
         print('Owner commands cog is online.\n')
@@ -66,12 +66,14 @@ class OwnerCog(commands.Cog):
     #   is_owner check to see if the user invoking the command is the bot owner.
     @commands.is_owner()
     async def logoff(self, ctx):
+        _save()
         user = self.bot.get_user(329377582476951552)
         #   Send logs as a backup.
         await user.send(file=discord.File("cogs/logs.txt"))
         await user.send(file=discord.File("cogs/suggestions.txt"))
         await user.send('logging off bot.')
         await self.bot.close()
+
 
 
 def setup(bot):
