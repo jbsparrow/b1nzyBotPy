@@ -16,30 +16,31 @@ class Simple(commands.Cog):
     @commands.command()
     async def math(self, ctx, num1, operator, num2):
         """Does simple math."""
-        #   Check for operator, can only do simple math, by simple math, that means no square roots, but it can do math with extremely large numbers.
+        #   Check for operator, can only do simple math, by simple math, I mean no square roots, but it can do math with what I would consider quite large numbers.
         if operator == "+":
             num1 = int(num1)
             num2 = int(num2)
             msg = num1+num2
-            print(msg)
             await ctx.send(str(msg))
         if operator == "-":
             num1 = int(num1)
             num2 = int(num2)
             msg = num1-num2
-            print(msg)
             await ctx.send(str(msg))
         if operator == "*":
             num1 = int(num1)
             num2 = int(num2)
             msg = num1*num2
-            print(msg)
             await ctx.send(str(msg))
         if operator == "/":
             num1 = int(num1)
             num2 = int(num2)
             msg = num1/num2
-            print(msg)
+            await ctx.send(str(msg))
+        if operator == "^":
+            num1 = int(num1)
+            num2 = int(num2)
+            msg = pow(num1, num2)
             await ctx.send(str(msg))
 
     #   Prints in console when a user is banned from a server the bot is in.
