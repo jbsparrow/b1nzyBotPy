@@ -37,11 +37,6 @@ class Simple(commands.Cog):
             num2 = int(num2)
             msg = num1/num2
             await ctx.send(str(msg))
-        if operator == "^":
-            num1 = int(num1)
-            num2 = int(num2)
-            msg = pow(num1, num2)
-            await ctx.send(str(msg))
 
     #   Prints in console when a user is banned from a server the bot is in.
     @commands.Cog.listener()

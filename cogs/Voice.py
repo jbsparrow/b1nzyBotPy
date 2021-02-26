@@ -1,6 +1,8 @@
 import datetime
-from discord.ext import commands
 import discord
+from discord import FFmpegPCMAudio
+from discord.ext import commands
+from discord.utils import get
 intents = discord.Intents.default()
 intents.members = True
 
@@ -26,20 +28,25 @@ class Voice(commands.Cog):
     @commands.command(aliases=['dc', 'fuckoff', 'leave'])
     async def disconnect(self, ctx):
         """leaves the voice channel that b1nzyBot is currently in."""
-        vc = ctx.voice_client
-        if not vc:
+        voice = get(self.bot.voice_clients, guild=ctx.guild)
+        if not voice:
             await ctx.send("I am not in a voice channel.")
             return
-        await vc.disconnect()
+        await voice.disconnect()
 
     @commands.command(aliases=['connect'])
     async def join(self, ctx):
-        """joins the voice channel the user is in at time of command initiation."""
         channel = ctx.message.author.voice.channel
-        voice_client: discord.VoiceClient = discord.utils.get(self.bot.voice_clients, guild=guild)
-        audio_source = discord.FFmpegPCMAudio('audio.mp3')
         await channel.connect()
-        voice_client.play(audio_source, after=None)
+
+    @commands.is_owner()
+    @commands.command(aliases=['p'])
+    async def play(self, ctx):
+        """joins the voice channel the user is in at time of command initiation."""
+        voice = get(self.bot.voice_clients, guild=ctx.guild)
+        voice.play(FFmpegPCMAudio("cogs/farted.mp3"))
+        voice.source = discord.PCMVolumeTransformer(voice.source)
+        voice.source.volume = 0.07
 
 
 def setup(bot):

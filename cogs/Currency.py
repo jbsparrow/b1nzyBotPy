@@ -47,17 +47,6 @@ class Currency(commands.Cog):
             await ctx.send("You have ${} in the bank".format(amounts[id]))
             _save()
 
-    @commands.command(pass_context=True)
-    async def register(self, ctx):
-        id = str(ctx.message.author.id)
-        if id not in amounts:
-            amounts[id] = 100
-            await ctx.send("You are now registered")
-            _save()
-        else:
-            await ctx.send("You already have an account")
-            _save()
-
     @commands.cooldown(1, 30, commands.BucketType.user)
     @commands.command(pass_context=True)
     async def work(self, ctx):
@@ -75,13 +64,13 @@ class Currency(commands.Cog):
     @work.error
     async def work_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
-            msg = 'This command is on cooldown for {:.2f} more seconds'.format(error.retry_after)
+            msg = 'This command is on cooldown for {:.1f} more seconds'.format(error.retry_after)
             await ctx.send(msg)
         else:
             raise error
 
     @commands.command(pass_context=True, aliases=['give', 'pay'])
-    async def transfer(self, ctx, amount: int, other: discord.Member):
+    async def transfer(self, ctx, other: discord.Member, amount: int):
         primary_id = str(ctx.message.author.id)
         other_id = str(other.id)
         if primary_id not in amounts:
@@ -100,7 +89,7 @@ class Currency(commands.Cog):
         _save()
 
     @commands.is_owner()
-    @commands.command()
+    @commands.command(hidden=True)
     async def save(self):
         _save()
 

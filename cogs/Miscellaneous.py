@@ -122,49 +122,18 @@ class Miscellaneous(commands.Cog):
             await user2send.send(embed=usersentembed)
             print(f'\n\nIMPORTANT\n{message.author} tried to send "{arg}" in {channelsend}.\nIMPORTANT\n')
 
-    #   command to dm users, as far as I know it doesn't work and I don't care enough to fix it
-    @commands.command(hidden=True)
-    async def dmuser(self, ctx, arg, *userid):
-        """command used to dm other users through b1nzy. usage: $dmuser "message" "user id" - cannot recieve replies."""
-        user = self.bot.get_user(userid)
-        await user.send(arg)
-
-    #   command to dm users, as far as I know it doesn't work and I don't care enough to fix it
-    @commands.command(hidden=True)
-    async def dmevan(self, ctx, *, message):
-        """command used to dm evan through b1nzy."""
-        user = self.bot.get_user(693114135713677353)
-        await user.send(message)
-
-    #   command to dm users, as far as I know it doesn't work and I don't care enough to fix it
-    @commands.command(hidden=True)
-    async def dmjbs(self, ctx, *, message):
-        """command used to dm evan through b1nzy."""
-        user = self.bot.get_user(329377582476951552)
-        await user.send(message)
-
-    #   equivelant of genecho and botecho but everyone can use it. - Broken
-    @commands.command(hidden=True)
-    async def echo2(self, ctx, *channelid, message):
-        """allows you to talk as b1nzy. - usage: $echo "message" "channel id" - If you don't use the quotes it won't work."""
-        channel = self.bot.get_channel(channelid)
-        await channel.send(f'{message}')
-
-    @commands.command(hidden=True)
-    async def echo(self, ctx, *, message):
-        """allows you to talk as b1nzy. - usage: $echo "message" "channel id" - If you don't use the quotes it won't work."""
-        await ctx.send(f'{message}')
-
     #   command to receive suggestions because I can't think of new features for my bot.
     @commands.command(aliases=['suggestion'])
     async def suggest(self, ctx, *, suggestion):
         """submit ideas for new features!"""
         message = ctx.message
         user = self.bot.get_user(329377582476951552)
+        guild = ctx.message.guild
         f = open("cogs/suggestions.txt", "a")
         embed = discord.Embed(colour=randomhex(hex))
-        embed.add_field(name='Author:', value=f'<@{message.author.id}>')
-        embed.add_field(name='Suggestion:', value=f'{suggestion}')
+        embed.add_field(name=f'**Author:** <@{message.author.id}> - {message.author.id}', value=f'\uFEFF')
+        embed.add_field(name=f'**Server:** {guild.name} - {guild.id}', value=f'\uFEFF')
+        embed.add_field(name=f'**Suggestion:** {suggestion}', value=f'\uFEFF')
         await user.send(embed=embed)
         await ctx.send(f'Your submission has been recieved, I will contact you with some questions if it is accepted.')
         f.write(f'{message.author} - <@{message.author.id}> suggested: "{suggestion}"\n')
@@ -181,7 +150,7 @@ class Miscellaneous(commands.Cog):
                          icon_url='https://cdn.discordapp.com/attachments/794323054317928478/794385737235562506/image.png')
 
         embed.add_field(name='Inspiration', value='[Click here](https://github.com/twotxh)')
-        embed.add_field(name='More inspiration', value='[Click here](https://b1nzy.com)')
+        embed.add_field(name='More inspiration', value='[Click here](https://takeb1nzyto.space)')
 
         await ctx.send(embed=embed)
 

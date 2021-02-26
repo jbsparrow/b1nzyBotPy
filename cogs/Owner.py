@@ -82,6 +82,5 @@ class OwnerCog(commands.Cog):
         await self.bot.close()
 
 
-
 def setup(bot):
     bot.add_cog(OwnerCog(bot))

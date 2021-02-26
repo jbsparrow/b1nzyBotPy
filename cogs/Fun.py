@@ -82,7 +82,7 @@ class Fun(commands.Cog):
         await ctx.send(f'{random.choice(quotes)}')
 
     @commands.command(aliases=['flip', 'coin', '50/50'])
-    async def coinflip(self, ctx, side):
+    async def coinflip(self, ctx, side='none'):
         """Coinflip 🤑🤑
         Use heads or tails to play against b1nzy.
         Input "none," or "flip" to flip and only return the side."""
@@ -111,8 +111,8 @@ class Fun(commands.Cog):
                     await ctx.send(f'Awww! You lost!')
         #   Allows user to flip without b1nzy, essentially just returning heads or tails without a pre-defined win/loss in the bot.
         elif side in ['none', 'flip', 'N/A', 'nill', 'null', 'nada']:
-            #   I got lazy and didn't wanna make a random.choice and a list so we have this handler.
-            #   The handler checks for heads and tails through the numbers, which we defined above in plain text.
+            #   I got lazy and didn't wanna make a random.choice and a list so we have this handler which does the same thing.
+            #   The handler checks for heads and tails through the numbers, which we defined above.
             if botflip == 1:
                 await ctx.send(f'It was heads!')
             elif botflip == 2:
@@ -144,12 +144,6 @@ class Fun(commands.Cog):
         topics = ['Do you have any secret family recipes?', 'What three words best describe you?', 'Have you ever quit a job?', 'Where did you go last weekend? / What did you do last weekend?', 'If you could change anything about me, what would it be?', 'If you could have any superpower, what would it be?', 'What would be your perfect weekend?', 'Who is your oldest friend? Where did you meet them?', 'Do you have any fun family traditions?', 'What’s your favorite way to waste time?', 'Have you ever been in a fight with anyone in your family?', 'Do you have any siblings?', 'Have you ever had any pets?', 'What do you do to get rid of stress?', 'When was the last time you worked incredibly hard?', 'What is something you are obsessed with?', 'Do you enjoy your job?', 'What’s the most trouble you’ve ever been in with your mom or dad?', 'What/who/which type of person annoys you the most', 'Do you get along with the people you work for/with?', 'What’s your favorite family story?', 'What’s the most useful thing you own?', 'What three words best describe you?']
         await ctx.send(f'{random.choice(topics)}')
 
-    #   Sends one of b1nzy's works.
-    @commands.command()
-    async def blob(self, ctx):
-        """blob"""
-        await ctx.send('https://ablobwob.work/')
-
     #   Sends headpat gif
     @commands.command()
     async def headpat(self, ctx):
@@ -175,7 +169,7 @@ class Fun(commands.Cog):
         await ctx.send("https://tenor.com/view/slap-face-gif-11457043")
 
     #   Picks a random number inbetween the values that the user specifies.
-    @commands.command(aliases=['random'])
+    @commands.command(aliases=['random', 'randint'])
     async def rand(self, ctx, min_num, max_num):
         """Picks a random number inbetween the specified values."""
         await ctx.send(str(random.randint(int(min_num), int(max_num))))
@@ -183,7 +177,7 @@ class Fun(commands.Cog):
     #   Play rock paper scissors with b1nzy :)
     # 1 = rock, 2 = paper, 3 = scissors
     @commands.command(aliases=['rockpaperscissors'])
-    async def rps(self, ctx, *playeranswer):
+    async def rps(self, ctx, playeranswer):
         """Play Rock Paper Scissors with b1nzy!
         You can play using words or numbers.
         1 = rock
@@ -194,27 +188,27 @@ class Fun(commands.Cog):
         botanswer = random.randint(1, 3)
         #   if b1nzy answers with rock
         if botanswer == 1:
-            if playeranswer == "rock" or 1:
+            if playeranswer == "rock" or '1':
                 await ctx.send("It's a tie! We both chose rock!")
-            elif playeranswer == "paper" or 2:
+            elif playeranswer == "paper" or '2':
                 await ctx.send("Oh no! I chose rock and you chose paper! You win!")
-            elif playeranswer == "scissors" or 3:
+            elif playeranswer == "scissors" or '3':
                 await ctx.send("I chose rock, and you chose scissors! You lose!")
         #   if b1nzy answers with paper
         elif botanswer == 2:
-            if playeranswer == "rock" or 1:
+            if playeranswer == "rock" or '1':
                 await ctx.send("I chose paper and you chose rock! You lose!")
-            elif playeranswer == "paper" or 2:
+            elif playeranswer == "paper" or '2':
                 await ctx.send("It's a tie! We both chose paper!")
-            elif playeranswer == "scissors" or 3:
+            elif playeranswer == "scissors" or '3':
                 await ctx.send("Oh no! I chose paper and you chose scissors! You win!")
         #   if b1nzy answers with scissors
         elif botanswer == 3:
-            if playeranswer == "rock" or 1:
+            if playeranswer == "rock" or '1':
                 await ctx.send("I chose scissors and you chose rock! You win!")
-            elif playeranswer == "paper" or 2:
+            elif playeranswer == "paper" or '2':
                 await ctx.send(" I chose scissors and you chose paper! You lose!")
-            elif playeranswer == "scissors" or 3:
+            elif playeranswer == "scissors" or '3':
                 await ctx.send("It's a tie! We both chose scissors!")
 
     #   Normal UwUize a message. This command replaces certain letters.
@@ -282,16 +276,14 @@ class Fun(commands.Cog):
             second) + ".png")
 
         embed = discord.Embed(colour=randomhex(hex))
-
         embed.set_image(url=image)
-
         embed.set_footer(text="I choose you!")
 
         await ctx.send(embed=embed)
 
     #   Sends news from the specified source
     @commands.command()
-    async def news(self, ctx, source):
+    async def news(self, ctx, source='list'):
         """Send news from a source of your choice.
         Use list to show all sources."""
 
@@ -329,33 +321,9 @@ class Fun(commands.Cog):
             b = d['entries'][0]['title']
             c = b + ": " + a
             await ctx.send(c)
-        if source == "reuters":
-            d = feedparser.parse("http://feeds.reuters.com/reuters/topNews")
-            a = d['entries'][0]['link']
-            b = d['entries'][0]['title']
-            c = b + ": " + a
-            await ctx.send(c)
 
-        if source == "cbs":
-            d = feedparser.parse("https://www.cbsnews.com/latest/rss/main/")
-            a = d['entries'][0]['link']
-            b = d['entries'][0]['title']
-            c = b + ": " + a
-            await ctx.send(c)
         if source == "list":
-            await ctx.send("bbc, cnn, scmp, cbc, propublica, reuters, cbs")
-
-    #   b1nzy :)
-    @commands.command(aliases=['space'])
-    async def b1nzy(self, ctx):
-        """origin story 👀"""
-        await ctx.send('https://takeb1nzyto.space')
-
-    #   sends a picture of b1nzy
-    @commands.command(hidden=True)
-    async def b1nzypic(self, ctx):
-        """sends a beautiful picture of the lord b1nzy himself."""
-        await ctx.send(file=discord.File('cogs/lord b1nzy.png'))
+            await ctx.send("here's a list of my sources: bbc, cnn, scmp, cbc, propublica, reuters")
 
         # general error handling.
     @commands.Cog.listener()

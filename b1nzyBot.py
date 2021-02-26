@@ -26,18 +26,22 @@ def get_prefix(bot, message):
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
 
+bot = commands.Bot(command_prefix=get_prefix, intents=intents)
+
+bot.remove_command('help')
+
+
 # loads cogs upon bot start.
 initial_extensions = ['cogs.Miscellaneous',
                       'cogs.Utilities',
+                      'cogs.MkDirNew',
                       'cogs.Currency',
                       'cogs.Members',
                       'cogs.Simple',
                       'cogs.Voice',
                       'cogs.Owner',
+                      'cogs.Help',
                       'cogs.Fun']
-
-
-bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 
 
 if __name__ == '__main__':

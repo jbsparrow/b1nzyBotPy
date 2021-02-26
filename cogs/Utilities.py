@@ -90,7 +90,7 @@ class Utilities(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         """shows b1nzyBot's ping."""
-        await ctx.send(f'Pong! Your ping is {round(self.bot.latency * 1000)}ms.')
+        await ctx.send(f'Pong! b1nzy\'s ping is {round(self.bot.latency * 1000)}ms.')
 
     @commands.command(aliases=['purge'])
     #   Check to see if user has proper perms
