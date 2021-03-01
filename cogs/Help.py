@@ -379,6 +379,8 @@ class Help(commands.Cog):
         embed.add_field(name=f'\uFEFF', value=f'**$xuwu** - UwUizes your message but with a bit more ✨spice✨ to it.', inline=False)
         embed.add_field(name=f'\uFEFF', value=f'**$urban** - Look up your input on urban dictionary.', inline=False)
 
+        embed.set_footer(text='Use $help [command] for command usage and aliases.')
+
         await ctx.send(embed=embed)
 
 #   Miscellaneous
@@ -396,6 +398,8 @@ class Help(commands.Cog):
         embed.add_field(name=f'\uFEFF', value='**$ping** - Sends b1nzy\'s ping.', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$invite** - Sends b1nzy\'s invite link.', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$credits** - Who helped me make b1nzyBot.', inline=False)
+
+        embed.set_footer(text='Use $help [command] for command usage and aliases.')
 
         await ctx.send(embed=embed)
 
