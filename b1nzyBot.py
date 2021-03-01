@@ -1,8 +1,9 @@
 from itertools import cycle
 import random
 import discord
-from discord.ext import commands, tasks
 import os
+from discord.ext import commands, tasks
+from discord_slash import SlashCommand
 from dotenv import load_dotenv
 from cogs.Currency import _save
 
@@ -13,8 +14,7 @@ YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
 SERVER_GENERAL = int(os.getenv('SERVER_GENERAL'))
 TOKEN = os.getenv('TOKEN')
 
-intents = discord.Intents.default()
-intents.members = True
+intents = discord.Intents.all()
 Guild = discord.guild.Guild
 
 
@@ -26,7 +26,8 @@ def get_prefix(bot, message):
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
 
-bot = commands.Bot(command_prefix=get_prefix, intents=intents)
+bot = commands.Bot(command_prefix=get_prefix, intents=intents.all())
+slash = SlashCommand(bot, sync_commands=True)
 
 bot.remove_command('help')
 
@@ -87,6 +88,33 @@ async def logs():
     user = bot.get_user(YOUR_USER_ID)
     await user.send(file=discord.File("cogs/suggestions.txt"))
     await user.send(file=discord.File("cogs/logs.txt"))
+
+
+#   Slash commands
+#   Command that does simple math.
+@slash.slash(name='math', description='Does simple math, Allowed operators: +, -, *, /')
+async def _math(ctx, num1, operator, num2):
+    #   Check for operator, can only do simple math, by simple math, that means no square roots, but it can do math with extremely large numbers.
+    if operator == "+":
+        num1 = int(num1)
+        num2 = int(num2)
+        msg = num1+num2
+        await ctx.send(str(msg))
+    if operator == "-":
+        num1 = int(num1)
+        num2 = int(num2)
+        msg = num1-num2
+        await ctx.send(str(msg))
+    if operator == "*":
+        num1 = int(num1)
+        num2 = int(num2)
+        msg = num1*num2
+        await ctx.send(str(msg))
+    if operator == "/":
+        num1 = int(num1)
+        num2 = int(num2)
+        msg = num1/num2
+        await ctx.send(str(msg))
 
 
 bot.run(f'{TOKEN}', bot=True, reconnect=True)

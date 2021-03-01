@@ -164,7 +164,7 @@ class Miscellaneous(commands.Cog):
     @commands.command()
     async def invite(self, ctx):
         """sends an invite link for b1nzyBot."""
-        await ctx.send('https://discord.com/api/oauth2/authorize?client_id=788978875287470091&permissions=1916267615&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize&scope=bot')
+        await ctx.send('https://discord.com/api/oauth2/authorize?client_id=788978875287470091&permissions=1916267615&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize&scope=bot%20applications.commands')
 
     # useless command used to index emotes in servers the bot is in for use in messages.
     @commands.command(hidden=True)
