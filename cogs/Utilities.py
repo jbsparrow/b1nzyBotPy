@@ -6,6 +6,7 @@ import mtranslate
 import os
 from dotenv import load_dotenv
 
+from cogs.Fun import randomhex
 
 load_dotenv()
 
@@ -117,7 +118,7 @@ class Utilities(commands.Cog):
     @commands.command(hidden=True)
     # checks to see if user has proper perms
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, member : discord.Member, *, reason=None):
+    async def kick(self, ctx, member: discord.Member, *, reason=None):
         """kicks the specified user."""
         await member.kick(reason=reason)
         await ctx.send(f'Kicked {member.mention}')
@@ -129,11 +130,15 @@ class Utilities(commands.Cog):
             await ctx.send('You do not have the required permissions to use this.')
         elif isinstance(error, commands.errors.BotMissingPermissions):
             await ctx.send('I do not have the required permissions to use this.')
+        elif isinstance(error, commands.errors.MissingRequiredArgument):
+            await ctx.send('You must provide a member to be banned.')
+        elif isinstance(error, commands.errors.UserNotFound):
+            await ctx.send('I was unable to find the specified user.')
 
     @commands.command(hidden=True)
     # checks to see if user has proper perms
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member : discord.Member, *, reason=None):
+    async def ban(self, ctx, member: discord.Member, *, reason=None):
         """bans the specified user."""
         await member.ban(reason=reason)
         await ctx.send(f'Banned {member.mention}')
@@ -145,6 +150,10 @@ class Utilities(commands.Cog):
             await ctx.send('You do not have the required permissions to use this.')
         elif isinstance(error, commands.errors.BotMissingPermissions):
             await ctx.send('I do not have the required permissions to use this.')
+        elif isinstance(error, commands.errors.MissingRequiredArgument):
+            await ctx.send('You must provide a member to be banned.')
+        elif isinstance(error, commands.errors.UserNotFound):
+            await ctx.send('I was unable to find the specified user.')
 
     @commands.command(hidden=True)
     # checks to see if user has proper perms
@@ -169,6 +178,25 @@ class Utilities(commands.Cog):
             await ctx.send('You do not have the required permissions to use this.')
         elif isinstance(error, commands.errors.BotMissingPermissions):
             await ctx.send('I do not have the required permissions to use this.')
+        elif isinstance(error, commands.errors.MissingRequiredArgument):
+            await ctx.send('You must provide a member to be unbanned.')
+        elif isinstance(error, commands.errors.UserNotFound):
+            await ctx.send('I was unable to find the specified user.')
+
+    @commands.command()
+    async def suicide(self, ctx):
+        embed = discord.Embed(title='List of Suicide Hotlines', colour=randomhex(hex), url='https://en.wikipedia.org/wiki/List_of_suicide_crisis_lines/')
+
+        embed.add_field(name='\uFEFF', value='Mental Health Resources:', inline=False)
+
+        embed.add_field(name='\uFEFF', value='Call: 1-833-456-4566, Available 24/7 for emotional support\nText: 45646\nhttps://kidshelpphone.ca/\nhttps://www.crisisservicescanada.ca/\nhttps://crisistextline.ca/', inline=False)
+        embed.add_field(name='\uFEFF', value='LGBTQ+ Support\nThe Trevor Project\nCall: 1-866-488-7386\nText: START to 678-678\nhttps://www.thetrevorproject.org/get-help-now/', inline=False)
+        embed.add_field(name='\uFEFF', value='Trans Lifeline\nCall: 877-565-8860\nhttps://translifeline.org/', inline=False)
+        embed.add_field(name='\uFEFF', value='Wikipedia list of worldwide crisis hotlines:\nhttps://en.wikipedia.org/wiki/List_of_suicide_crisis_lines/', inline=False)
+
+        embed.set_footer(text='If you are struggling with thoughts of suicide or if another user is in immediate physical danger of harming themselves, please contact a suicide hotline or law enforcement immediately.')
+
+        await ctx.send(embed=embed)
 
 
 def setup(bot):
