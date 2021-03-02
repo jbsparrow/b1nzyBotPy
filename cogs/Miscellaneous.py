@@ -47,7 +47,7 @@ class Miscellaneous(commands.Cog):
         # IMPORTANT: if you do not add your user ID here and your friend's user ID below, then the command will not work.
         # if you do not want to add a friend, remove the comment on the line below, delete the if statement that says "(YOUR_USER_ID, FRIEND_USER_ID):" and remove all instances of "user2send"
         # if message.author.id = YOUR_USER_ID
-        if message.author.id in (YOUR_USER_ID, SERVER_GENERAL):
+        if message.author.id in (YOUR_USER_ID, FRIEND_USER_ID):
             await channelsend.send(f'{arg}')
             # the code below this comment is irrelevant, the only thing needed is the await channel.send and if you want you could keep that else and put a return statement after it.
             usersentembed = discord.Embed(colour=randomhex(hex))
@@ -164,7 +164,7 @@ class Miscellaneous(commands.Cog):
     @commands.command()
     async def invite(self, ctx):
         """sends an invite link for b1nzyBot."""
-        await ctx.send('https://discord.com/api/oauth2/authorize?client_id=788978875287470091&permissions=1916267615&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize&scope=bot')
+        await ctx.send('https://discord.com/api/oauth2/authorize?client_id=788978875287470091&permissions=1916267615&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize&scope=bot%20applications.commands')
 
     # useless command used to index emotes in servers the bot is in for use in messages.
     @commands.command(hidden=True)
