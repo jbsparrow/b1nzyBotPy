@@ -4,6 +4,8 @@ from discord.ext import commands
 import discord
 import os
 from dotenv import load_dotenv
+from termcolor import cprint
+from pytz import timezone
 
 from cogs.Fun import randomhex
 
@@ -177,12 +179,39 @@ class Miscellaneous(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        channel = self.bot.get_channel(message.channel.id)
-        if message.author.id == INSULT_USER_ID:
-            http = urllib3.PoolManager()
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-            test = http.request('GET', 'https://insult.mattbas.org/api/insult')
-            await channel.send(f"<@{INSULT_USER_ID}>, " + str(test.data, "utf-8"))
+        messageguild = message.guild.name
+
+        if not messageguild == 'Discord Bots':
+            log = open('Other/Log.txt', 'a')
+            channel = self.bot.get_channel(message.channel.id)
+            tz = timezone('US/Eastern')
+            c_time = datetime.datetime.now(tz)
+            authorid = message.author.id
+            user = message.author.name
+            msg = message.content
+
+            if message.author == self.bot.user:
+                return
+
+            #   Logging in different colours because it looks nice and makes it easier to scan through messages from different servers and users faster.
+            cprint(f"<{c_time.strftime('%I:%M%p')}>", 'cyan', end='')
+            cprint(f" guild:{messageguild}", 'green', end='')
+            cprint(f" {user}(id:{authorid})", 'yellow', end='')
+            cprint(f" {msg}", 'magenta')
+
+            try:
+                log.write("<" + c_time.strftime("%a, %m/%d/%Y %I:%M:%S%p") + f"> {user}(id:{id}): {msg}\n")
+            except:
+                log.write("<" + c_time.strftime("%a, %m/%d/%Y %I:%M:%S%p") + f"> {user}(id:{id}): *Emoji*\n")
+            log.close
+
+            if message.author.id == INSULT_USER_ID:
+                http = urllib3.PoolManager()
+                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+                test = http.request('GET', 'https://insult.mattbas.org/api/insult')
+                await channel.send(f"<@{INSULT_USER_ID}>, " + str(test.data, "utf-8"))
+
+                await self.bot.process_commands(message)
 
 
 #   set up all command category

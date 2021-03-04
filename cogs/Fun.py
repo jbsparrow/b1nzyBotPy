@@ -1,14 +1,15 @@
-import random
 import datetime
-from discord.ext import commands
-import aiohttp
-import urllib3
-import discord
-import requests
-import feedparser
 import os
+import random
+import aiohttp
+import discord
+import feedparser
+import requests
+from termcolor import cprint
+import urbandictionary
+import urllib3
+from discord.ext import commands
 from dotenv import load_dotenv
-
 
 load_dotenv()
 
@@ -53,6 +54,7 @@ class Fun(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('Fun cog is online.\n')
+        cprint('------------logs------------', 'blue')
 
     #   sends cat pictures from random.cat
     @commands.command(aliases=['cat', 'cats', 'catpictures', 'catpics', 'catpicture'])
@@ -259,12 +261,36 @@ class Fun(commands.Cog):
     #   Searches your query on urban dictionary.
     #   Does not return the results from UD, just sends a link that the user can click.
     @commands.is_nsfw()
-    @commands.command(aliases=['urban', 'urbandictionary'])
-    async def ud(self, ctx, *, query):
+    @commands.command(aliases=['urbans', 'urbandictionary'])
+    async def ud(self, ctx, *, query='random'):
         """Searches urban dictionary for your input."""
-        #   Replaces spaces with %20's so that it can be included in the search term.
-        query = query.replace(" ", "%20")
-        await ctx.send("https://urbandictionary.com/define.php?term=" + query)
+        if query == 'random':
+            ran = urbandictionary.random()
+            limit = 1
+            for r in ran:
+                while limit != 0:
+                    definition = r.definition
+                    example = r.example
+
+                    #   Remove all square brackets as they only have an effect on the urban dictionary website
+                    definition = definition.replace('[', '')
+                    definition = definition.replace(']', '')
+                    example = example.replace('[', '')
+                    example = example.replace(']', '')
+
+                    #   Make an embed because all things are better in an embed
+                    embed = discord.Embed(colour=randomhex(hex), title=r.word)
+
+                    embed.add_field(name='Definition:', value=definition, inline=False)
+                    embed.add_field(name='Example:', value=example, inline=False)
+
+                    #   Send the embed.
+                    await ctx.send(embed=embed)
+                    limit -= 1
+        else:
+            #   replace spaces with %20's to function as a proper link
+            query.replace(' ', '%20')
+            await ctx.send(f'https://urbandictionary.com/define.php?term={query}')
 
     #   Sends a random pokemon :)
     @commands.command()
