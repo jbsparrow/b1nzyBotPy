@@ -76,7 +76,7 @@ async def death():
     # put the Channel ID of the channel you want death messages to send in below.
     channel = bot.get_channel(SERVER_GENERAL)
     user = [member.id for member in channel.guild.members]
-    autopsy = ['died from stupidity', 'died from embarrassment', 'got hit by a frog and died from sliminess', 'fell off a cliff', 'died from eating too many children', 'died from not wearing a mask', f'was poisoned by <@{random.choice(user)}>', f'had all their blood drained by <@{random.choice(user)}>', f'was suffocated by <@{random.choice(user)}>', 'was decapitated.', 'was hanged', f'was poisoned by <@{random.choice(user)}>']
+    autopsy = ['died from stupidity', 'died from embarrassment', 'got hit by a frog and died from sliminess', 'fell off a cliff', 'died from eating too many children', 'died from not wearing a mask', f'was poisoned by <@{random.choice(user)}>', f'had all their blood drained by <@{random.choice(user)}>', f'was suffocated by <@{random.choice(user)}>', 'was decapitated.', 'was publically executed', f'was poisoned by <@{random.choice(user)}>', f'<@{random.choice(user)}> ripped <@{random.choice(user)}>\'s head off.', f'<@{random.choice(user)}> massacred <@{random.choice(user)}>, <@{random.choice(user)}>, <@{random.choice(user)}>, <@{random.choice(user)}>, <@{random.choice(user)}>, and <@{random.choice(user)}>.']
     await channel.send(f'<@{random.choice(user)}> {random.choice(autopsy)}.')
     _save()
 
@@ -87,7 +87,6 @@ async def logs():
     # put your User ID below
     user = bot.get_user(YOUR_USER_ID)
     await user.send(file=discord.File("cogs/suggestions.txt"))
-    await user.send(file=discord.File("cogs/logs.txt"))
 
 
 #   Slash commands

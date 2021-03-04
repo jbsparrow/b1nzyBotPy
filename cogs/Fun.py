@@ -2,6 +2,7 @@ import random
 import datetime
 from discord.ext import commands
 import aiohttp
+import urllib3
 import discord
 import requests
 import feedparser
@@ -345,6 +346,15 @@ class Fun(commands.Cog):
         #   Put your user id here to be notified when the bot joins a guild.
         user = self.bot.get_user(YOUR_USER_ID)
         await user.send(f'I just joined **{guild.name}** (id: **{guild.id}**)!')
+
+    @commands.command()
+    async def insult(self, ctx, *, member=None):
+        if not member:
+            member = ctx.author.display_name
+        http = urllib3.PoolManager()
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        test = http.request('GET', 'https://insult.mattbas.org/api/insult')
+        await ctx.send(f"{member}, " + str(test.data, "utf-8"))
 
 
 def setup(bot):

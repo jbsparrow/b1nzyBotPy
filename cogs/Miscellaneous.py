@@ -1,4 +1,5 @@
 import datetime
+import urllib3
 from discord.ext import commands
 import discord
 import os
@@ -15,7 +16,7 @@ client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
 guild = discord.guild
 
-
+INSULT_USER_ID = int(os.getenv('INSULT_USER_ID'))
 YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
 FRIEND_USER_ID = int(os.getenv('FRIEND_USER_ID'))
 SERVER_GENERAL = int(os.getenv('SERVER_GENERAL'))
@@ -174,7 +175,16 @@ class Miscellaneous(commands.Cog):
         await ctx.channel.purge(limit=1)
         print(f'{ctx.guild.emojis}')
 
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        channel = self.bot.get_channel(message.channel.id)
+        if message.author.id == INSULT_USER_ID:
+            http = urllib3.PoolManager()
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+            test = http.request('GET', 'https://insult.mattbas.org/api/insult')
+            await channel.send(f"<@{INSULT_USER_ID}>, " + str(test.data, "utf-8"))
 
-# set up all command categories
+
+#   set up all command category
 def setup(bot):
     bot.add_cog(Miscellaneous(bot))
