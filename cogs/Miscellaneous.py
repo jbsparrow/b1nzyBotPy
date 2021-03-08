@@ -182,7 +182,6 @@ class Miscellaneous(commands.Cog):
         messageguild = message.guild.name
 
         if not messageguild == 'Discord Bots':
-            log = open('Other/Log.txt', 'a')
             channel = self.bot.get_channel(message.channel.id)
             tz = timezone('US/Eastern')
             c_time = datetime.datetime.now(tz)
@@ -199,19 +198,7 @@ class Miscellaneous(commands.Cog):
             cprint(f" {user}(id:{authorid})", 'yellow', end='')
             cprint(f" {msg}", 'magenta')
 
-            try:
-                log.write("<" + c_time.strftime("%a, %m/%d/%Y %I:%M:%S%p") + f"> {user}(id:{id}): {msg}\n")
-            except:
-                log.write("<" + c_time.strftime("%a, %m/%d/%Y %I:%M:%S%p") + f"> {user}(id:{id}): *Emoji*\n")
-            log.close
-
-            if message.author.id == INSULT_USER_ID:
-                http = urllib3.PoolManager()
-                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-                test = http.request('GET', 'https://insult.mattbas.org/api/insult')
-                await channel.send(f"<@{INSULT_USER_ID}>, " + str(test.data, "utf-8"))
-
-                await self.bot.process_commands(message)
+            await self.bot.process_commands(message)
 
 
 #   set up all command category
