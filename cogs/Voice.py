@@ -42,9 +42,12 @@ class Voice(commands.Cog):
     @commands.is_owner()
     @commands.command(aliases=['p'])
     async def play(self, ctx):
+        def musictest():
+            pass
+
         """joins the voice channel the user is in at time of command initiation."""
         voice = get(self.bot.voice_clients, guild=ctx.guild)
-        voice.play(FFmpegPCMAudio("cogs/farted.mp3"))
+        voice.play(FFmpegPCMAudio("test.mp3"), after=lambda e: musictest())
         voice.source = discord.PCMVolumeTransformer(voice.source)
         voice.source.volume = 0.07
 

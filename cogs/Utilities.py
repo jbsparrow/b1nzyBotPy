@@ -19,6 +19,8 @@ intents.messages = True
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
 guild = discord.guild
+snipe_message_author = {}
+snipe_message_content = {}
 
 
 class Utilities(commands.Cog):
@@ -183,7 +185,7 @@ class Utilities(commands.Cog):
         elif isinstance(error, commands.errors.UserNotFound):
             await ctx.send('I was unable to find the specified user.')
 
-    @commands.command()
+    @commands.command(aliases=['suicidal', 'selfharm', 'helpme'])
     async def suicide(self, ctx):
         embed = discord.Embed(title='List of Suicide Hotlines', colour=randomhex(hex), url='https://en.wikipedia.org/wiki/List_of_suicide_crisis_lines/')
 
@@ -197,6 +199,27 @@ class Utilities(commands.Cog):
         embed.set_footer(text='If you are struggling with thoughts of suicide or if another user is in immediate physical danger of harming themselves, please contact a suicide hotline or law enforcement immediately.')
 
         await ctx.send(embed=embed)
+
+    @commands.Cog.listener()
+    async def on_message_delete(self, message):
+        snipe_message_author[message.channel.id] = message.author
+        snipe_message_content[message.channel.id] = message.content
+        await asyncio.sleep(60)
+        del snipe_message_author[message.channel.id]
+        del snipe_message_content[message.channel.id]
+
+    @commands.command(aliases=['deleted'])
+    async def snipe(self, ctx):
+        channel = ctx.channel
+        try:  # This piece of code is run if the bot finds anything in the dictionary
+            embed = discord.Embed(title=f"Last deleted message in #{channel.name}", description=snipe_message_content[channel.id], colour=randomhex(hex))
+            embed.set_footer(text=f"This message was sent by {snipe_message_author[channel.id]}")
+            await ctx.send(embed=embed)
+        except:  # This piece of code is run if the bot doesn't find anything in the dictionary
+            await ctx.send(f"I couldn't find any recently deleted messages in <#{channel.id}>")
+
+    # If the bot sends the embed, but it's empty, it simply means that the deleted message was either a media file or another embed.
+    #   Snipe command credit to everyone who worked on this https://stackoverflow.com/questions/64383524/discord-py-snipe-command
 
 
 def setup(bot):

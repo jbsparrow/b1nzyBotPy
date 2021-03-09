@@ -198,7 +198,13 @@ class Miscellaneous(commands.Cog):
             cprint(f" {user}(id:{authorid})", 'yellow', end='')
             cprint(f" {msg}", 'magenta')
 
-            await self.bot.process_commands(message)
+            if message.author.id == INSULT_USER_ID:
+                http = urllib3.PoolManager()
+                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+                test = http.request('GET', 'https://insult.mattbas.org/api/insult')
+                await channel.send(f"<@{INSULT_USER_ID}>, " + str(test.data, "utf-8"))
+
+                await self.bot.process_commands(message)
 
 
 #   set up all command category
