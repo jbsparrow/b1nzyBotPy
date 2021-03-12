@@ -391,10 +391,10 @@ class Help(commands.Cog):
 #   $suicide
     @help.command()
     async def suicide(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `insult`')
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `suicide`')
 
-        embed.add_field(name=f'**Description:** Insults the specified user, if noone is specified, insults you.', value='\uFEFF', inline=False)
-        embed.add_field(name=f'**Usage:** `$insult`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Description:** Sends a list of suicide hotlines.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$suicide`', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Aliases:**', value='suicidal\nselfharm\nhelpme', inline=False)
         await ctx.send(embed=embed)
 

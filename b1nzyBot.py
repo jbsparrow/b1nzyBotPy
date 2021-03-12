@@ -26,7 +26,7 @@ def get_prefix(bot, message):
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
 
-bot = commands.Bot(command_prefix=get_prefix, intents=intents.all())
+bot = commands.Bot(command_prefix=get_prefix, intents=intents.all(), case_insensitive=True)
 slash = SlashCommand(bot, sync_commands=True)
 
 bot.remove_command('help')

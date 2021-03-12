@@ -130,7 +130,7 @@ class Miscellaneous(commands.Cog):
     async def suggest(self, ctx, *, suggestion):
         """submit ideas for new features!"""
         message = ctx.message
-        user = self.bot.get_user(329377582476951552)
+        user = self.bot.get_user(YOUR_USER_ID)
         guild = ctx.message.guild
         f = open("cogs/suggestions.txt", "a")
         embed = discord.Embed(colour=randomhex(hex))
@@ -138,7 +138,7 @@ class Miscellaneous(commands.Cog):
         embed.add_field(name=f'**Server:** {guild.name} - {guild.id}', value=f'\uFEFF')
         embed.add_field(name=f'**Suggestion:** {suggestion}', value=f'\uFEFF')
         await user.send(embed=embed)
-        await ctx.send(f'Your submission has been recieved, I will contact you with some questions if it is accepted.')
+        await ctx.send(f'Your submission has been recieved, I may contact you with some questions if it is accepted.')
         f.write(f'{message.author} - <@{message.author.id}> suggested: "{suggestion}"\n')
 
     # credits for the bot, sends embed containing anybody that helped to directly, or indirectly, make b1nzyBot.
