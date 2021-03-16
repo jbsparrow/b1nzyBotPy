@@ -5,6 +5,7 @@ If you for some reason decide that you would like to use this bot, I've made ins
 1. Create a file and name it .env
 2. Put said file in the b1nzyBotPy folder
 3. Put this:
+
 TOKEN=''
 YOUR_USER_ID=
 FRIEND_USER_ID=
