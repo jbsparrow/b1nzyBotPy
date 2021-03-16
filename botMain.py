@@ -35,12 +35,12 @@ bot.remove_command('help')
 # loads cogs upon bot start.
 initial_extensions = ['cogs.Miscellaneous',
                       'cogs.Utilities',
-                      'cogs.MkDirNew',
                       'cogs.Currency',
                       'cogs.Members',
                       'cogs.Simple',
                       'cogs.Voice',
                       'cogs.Owner',
+                      'cogs.NSFW',
                       'cogs.Help',
                       'cogs.Fun']
 
