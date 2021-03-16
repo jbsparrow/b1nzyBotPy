@@ -6,7 +6,7 @@ If you've decided that you would like to use this pretty shit bot, I've made ins
 2. Put said file in the b1nzyBotPy folder
 3. Put the text below into the `.env` file and fill in the corresponding values.
 ```
-TOKEN='<'
+TOKEN=''
 YOUR_USER_ID=''
 FRIEND_USER_ID=''
 SERVER_GENERAL=''
