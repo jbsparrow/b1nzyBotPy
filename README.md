@@ -12,6 +12,6 @@ FRIEND_USER_ID=''
 SERVER_GENERAL=''
 SERVER_BOT_COMMANDS=''
 ```
-4. Install the requirements (1. `cd` to repo  2. type in the console `pip3 install -r requirements.txt`) Once you've done that, type in the console `pip3 install -U discord-py-slash-command`
+4. Install the requirements (1. `cd` to the repo  2. type in the console `pip3 install -r requirements.txt`) Once you've done that, type in the console `pip3 install -U discord-py-slash-command`
 
 5. Run the bot with `python3 botMain.py` or if you're on windows `py botMain.py`
