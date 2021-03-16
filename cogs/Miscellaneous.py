@@ -176,6 +176,10 @@ class Miscellaneous(commands.Cog):
         await ctx.channel.purge(limit=1)
         print(f'{ctx.guild.emojis}')
 
+    @commands.command(aliases=['code', 'opensource', 'sourcecode', 'source'])
+    async def github(self, ctx):
+        await ctx.send('https://github.com/jbsparrow/b1nzyBotPy')
+
     @commands.Cog.listener()
     async def on_message(self, message):
         messageguild = message.guild.id

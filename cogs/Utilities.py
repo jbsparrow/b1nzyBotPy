@@ -219,7 +219,7 @@ class Utilities(commands.Cog):
             await ctx.send(f"I couldn't find any recently deleted messages in <#{channel.id}>")
 
     # If the bot sends the embed, but it's empty, it simply means that the deleted message was either a media file or another embed.
-    #   Snipe command credit to everyone who worked on this https://stackoverflow.com/questions/64383524/discord-py-snipe-command
+    # Snipe command credit to everyone who worked on this https://stackoverflow.com/questions/64383524/discord-py-snipe-command
 
 
 def setup(bot):

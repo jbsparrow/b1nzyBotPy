@@ -314,7 +314,7 @@ class Help(commands.Cog):
         await ctx.send(embed=embed)
 
 #   $urban
-    @help.command(aliases=['ud', 'urbandictionary'])
+    @help.command(aliases=['ud', 'urbandictionary', 'urbans'])
     async def urban(self, ctx):
         embed = discord.Embed(colour=randomhex(hex), title='**Command:** `urban`')
 
@@ -427,6 +427,17 @@ class Help(commands.Cog):
         embed.add_field(name=f'**Description:** Sends a meme that\'s probably not very funny.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$meme`', value='\uFEFF', inline=False)
         await ctx.send(embed=embed)
+
+    #   github
+    @help.command(aliases=['code', 'opensource', 'sourcecode', 'source'])
+    async def github(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `github`')
+
+        embed.add_field(name=f'**Description:** Sends the link to b1nzyBot\'s github repo.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$github`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Aliases:**', value='opensource\nsourcecode\nsource\ncode', inline=False)
+        await ctx.send(embed=embed)
+
 
 #   Categories
 

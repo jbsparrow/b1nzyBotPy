@@ -308,7 +308,7 @@ class Fun(commands.Cog):
     #   Searches your query on urban dictionary.
     #   Does not return the results from UD, just sends a link that the user can click.
     @commands.is_nsfw()
-    @commands.command(aliases=['urbans', 'urbandictionary'])
+    @commands.command(aliases=['urbans', 'urbandictionary', 'urban'])
     async def ud(self, ctx, *, query='random'):
         """Searches urban dictionary for your input."""
         if query == 'random':
@@ -397,7 +397,7 @@ class Fun(commands.Cog):
             await ctx.send(c)
 
         if source == "list":
-            await ctx.send("here's a list of my sources: bbc, cnn, scmp, cbc, propublica, reuters")
+            await ctx.send("here's a list of the available sources: \nbbc\ncnn\nscmp\ncbc\npropublica\nreuters")
 
         # general error handling.
     @commands.Cog.listener()
