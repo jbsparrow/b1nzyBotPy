@@ -20,7 +20,7 @@ class NSFW(commands.Cog):
     # says when bot is online
     @commands.Cog.listener()
     async def on_ready(self):
-        print('MkDir cog is online.\n')
+        print('NSFW cog is online.\n')
 
     @commands.command()
     @commands.is_nsfw()
