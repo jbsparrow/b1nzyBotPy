@@ -3,9 +3,9 @@ from discord.ext import commands
 import discord
 import json
 import random
+from termcolor import cprint
 intents = discord.Intents.default()
 intents.members = True
-
 
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
@@ -32,8 +32,9 @@ class Currency(commands.Cog):
         try:
             with open('amounts.json') as f:
                 amounts = json.load(f)
+                print('Loaded amounts.json\n')
         except FileNotFoundError:
-            print("Could not load amounts.json")
+            cprint("Could not load amounts.json", 'red')
             amounts = {}
 
     @commands.command(pass_context=True, aliases=['bal'])

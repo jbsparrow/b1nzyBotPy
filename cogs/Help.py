@@ -398,6 +398,36 @@ class Help(commands.Cog):
         embed.add_field(name=f'**Aliases:**', value='suicidal\nselfharm\nhelpme', inline=False)
         await ctx.send(embed=embed)
 
+    #   $edit
+    @help.command()
+    async def edit(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `edit`')
+
+        embed.add_field(name=f'**Description:** Edits whatever you want onto an ugly background in the specified font. For extra ugliness it won\'t be centred.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$edit <font> <content>`', value='\uFEFF', inline=False)
+        embed.set_footer(text='This command is a WIP so your edit will probably look ugly /:')
+        await ctx.send(embed=embed)
+
+    #   $achievement
+    @help.command()
+    async def achievement(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `achievement`')
+
+        embed.add_field(name=f'**Description:** Makes your input into a minecraft achievement.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$achievement <achievement>`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Aliases:**', value='achievment\nmc\nminecraft', inline=False)
+        embed.set_footer(text='This command is a WIP so your achievement will probably look ugly /:')
+        await ctx.send(embed=embed)
+
+    #   $meme
+    @help.command()
+    async def meme(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `meme`')
+
+        embed.add_field(name=f'**Description:** Sends a meme that\'s probably not very funny.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$meme`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
 #   Categories
 
 #   Fun
@@ -421,6 +451,9 @@ class Help(commands.Cog):
         embed.add_field(name=f'\uFEFF', value=f'**$xuwu** - UwUizes your message but with a bit more ✨spice✨ to it.', inline=False)
         embed.add_field(name=f'\uFEFF', value=f'**$urban** - Look up your input on urban dictionary, if none is specified get a random word.', inline=False)
         embed.add_field(name=f'\uFEFF', value=f'**insult** - Insults the specified user, if none is specified, insults you.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**achievement** - Makes your input into a minecraft achievement.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**edit** - Edits whatever you want onto an ugly background in the specified font. For extra ugliness it won\'t be centred.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**meme** - Sends a meme that\'s probably not very funny.', inline=False)
 
         embed.set_footer(text='Use $help [command] for command usage and aliases.')
 

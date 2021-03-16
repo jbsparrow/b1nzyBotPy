@@ -1,15 +1,18 @@
 import datetime
+import json
 import os
 import random
+
 import aiohttp
 import discord
 import feedparser
 import requests
-from termcolor import cprint
 import urbandictionary
 import urllib3
+from PIL import Image, ImageDraw, ImageFont
 from discord.ext import commands
 from dotenv import load_dotenv
+from termcolor import cprint
 
 load_dotenv()
 
@@ -44,6 +47,12 @@ def randomhex(x):
     return hex
 
 
+def jprint(obj):
+    # create a formatted string of the Python JSON object
+    text = json.dumps(obj, sort_keys=True, indent=4)
+    print(text)
+
+
 class Fun(commands.Cog):
 
     # useless but nice commands.
@@ -61,10 +70,16 @@ class Fun(commands.Cog):
     async def catpic(self, ctx):
         """INFINITE CAT PICTURES!!!!!!!!!!!!!!!!"""
         async with aiohttp.ClientSession() as session:
-            async with session.get('http://aws.random.cat/meow') as r:
-                if r.status == 200:
-                    js = await r.json()
-                    await ctx.send(js['file'])
+            async with session.get('https://some-random-api.ml/facts/cat') as g:
+                jscat = await g.json()
+                async with session.get('http://aws.random.cat/meow') as r:
+                    if r.status == 200:
+                        js = await r.json()
+                        embed = discord.Embed(colour=randomhex(hex))
+
+                        embed.set_image(url=f'{js["file"]}')
+                        embed.set_footer(text=f'{jscat["fact"]}')
+                        await ctx.send(embed=embed)
 
     #   sends a quote pulled from quotable API
     @commands.command()
@@ -148,16 +163,48 @@ class Fun(commands.Cog):
         await ctx.send(f'{random.choice(topics)}')
 
     #   Sends headpat gif
-    @commands.command()
-    async def headpat(self, ctx):
+    @commands.command(aliases=['pat'])
+    async def headpat(self, ctx, *, user=None):
         """*pats head*"""
-        await ctx.send("https://tenor.com/view/chihya-puchimas-patshead-anime-chibi-gif-5518317")
+        if user is None:
+            async with aiohttp.ClientSession() as session:
+                async with session.get('https://some-random-api.ml/animu/pat') as g:
+                    js = await g.json()
+                    embed = discord.Embed(colour=randomhex(hex), description='*Gives you a headpatt.*')
+                    embed.set_image(url=f'{js["link"]}')
+
+                    await ctx.send(embed=embed)
+        else:
+            message = ctx.message
+            async with aiohttp.ClientSession() as session:
+                async with session.get('https://some-random-api.ml/animu/pat') as g:
+                    js = await g.json()
+                    embed = discord.Embed(colour=randomhex(hex), description=f'*<@{message.author.id}> gives <@{message.mentions[0].id}> a headpat.*')
+                    embed.set_image(url=f'{js["link"]}')
+
+                    await ctx.send(embed=embed)
 
     #   Sends hugging gif
     @commands.command()
-    async def hug(self, ctx):
+    async def hug(self, ctx, *, user=None):
         """*hugs*"""
-        await ctx.send("https://tenor.com/view/hug-peachcat-cat-cute-gif-13985247")
+        if user is None:
+            async with aiohttp.ClientSession() as session:
+                async with session.get('https://some-random-api.ml/animu/hug') as g:
+                    js = await g.json()
+                    embed = discord.Embed(colour=randomhex(hex), description='*Hugs you.*')
+                    embed.set_image(url=f'{js["link"]}')
+
+                    await ctx.send(embed=embed)
+        else:
+            message = ctx.message
+            async with aiohttp.ClientSession() as session:
+                async with session.get('https://some-random-api.ml/animu/hug') as g:
+                    js = await g.json()
+                    embed = discord.Embed(colour=randomhex(hex), description=f'*<@{message.author.id}> hugs <@{message.mentions[0].id}>.*')
+                    embed.set_image(url=f'{js["link"]}')
+
+                    await ctx.send(embed=embed)
 
     #   Sends kissing gif
     @commands.command()
@@ -355,16 +402,10 @@ class Fun(commands.Cog):
         # general error handling.
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        if isinstance(error, commands.UserInputError):
-            await ctx.send(f'Incorrect arguments passed, please try again.')
-            if isinstance(error, commands.CommandNotFound):
-                await ctx.send(f'That command does not exist.')
-            if isinstance(error, commands.MissingPermissions):
-                await ctx.send(f'<@{ctx.author.id}>, You do not have the required permissions to do that.')
-            if isinstance(error, commands.CommandOnCooldown):
-                await ctx.send(f'<@{ctx.author.id}>, this command is on cooldown for you!')
-            if isinstance(error, commands.MissingRequiredArgument):
-                await ctx.send(f'Missing Required Arguments. Use `$help <command name>` and check that you\'ve used the command properly.')
+        if isinstance(error, commands.MissingPermissions):
+            await ctx.send(f'<@{ctx.author.id}>, You do not have the required permissions to do that.')
+        elif isinstance(error, commands.CommandOnCooldown):
+            await ctx.send(f'<@{ctx.author.id}>, this command is on cooldown for you!')
 
     # Why this is in the fun cog, no idea, but it works.
     @commands.Cog.listener()
@@ -373,6 +414,7 @@ class Fun(commands.Cog):
         user = self.bot.get_user(YOUR_USER_ID)
         await user.send(f'I just joined **{guild.name}** (id: **{guild.id}**)!')
 
+    # Sends very creative insults, either insults you or insults whoever you specify.
     @commands.command()
     async def insult(self, ctx, *, member=None):
         if not member:
@@ -381,6 +423,85 @@ class Fun(commands.Cog):
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         test = http.request('GET', 'https://insult.mattbas.org/api/insult')
         await ctx.send(f"{member}, " + str(test.data, "utf-8"))
+
+    # More shitty image manipulation, this one however is just kinda meant to not be great. I would make it good if the text looked centred when it's at the middle of the file but it doesn't and I don't know where to put it to properly centre it sooo.
+    @commands.command()
+    async def edit(self, ctx, font=None, *, content=':)'):
+        img = Image.open("Background.png")
+        draw = ImageDraw.Draw(img)
+        if font not in ['courier', 'impact', 'minecraft', 'rust', 'monobold', 'modernsans']:
+            await ctx.send('Please select a valid font.\nFont list:```\ncourier\nimpact\nminecraft\nrust\nmonobold\nmodernsans\n```')
+        elif font == 'rust':
+            font = ImageFont.truetype("Fonts/Rust.ttf", 300)
+            draw.text((1300, 1100), content, (206, 66, 43), font=font)
+            img.save('UpdatedImage.png')
+            await ctx.send(file=discord.File('UpdatedImage.png'))
+            os.remove('UpdatedImage.png')
+        elif font == 'courier':
+            font = ImageFont.truetype("Fonts/courier.ttf", 300)
+            draw.text((1300, 1100), content, (206, 66, 43), font=font)
+            img.save('UpdatedImage.png')
+            await ctx.send(file=discord.File('UpdatedImage.png'))
+            os.remove('UpdatedImage.png')
+        elif font == 'impact':
+            font = ImageFont.truetype("Fonts/impact.ttf", 300)
+            draw.text((1300, 1100), content, (206, 66, 43), font=font)
+            img.save('UpdatedImage.png')
+            await ctx.send(file=discord.File('UpdatedImage.png'))
+            os.remove('UpdatedImage.png')
+        elif font in ['minecraft', 'mc']:
+            font = ImageFont.truetype("Fonts/Minecraftia.ttf", 300)
+            draw.text((1300, 1100), content, (206, 66, 43), font=font)
+            img.save('UpdatedImage.png')
+            await ctx.send(file=discord.File('UpdatedImage.png'))
+            os.remove('UpdatedImage.png')
+        elif font == 'monobold':
+            font = ImageFont.truetype("Fonts/FreeMonoBold.ttf", 300)
+            draw.text((1300, 1100), content, (206, 66, 43), font=font)
+            img.save('UpdatedImage.png')
+            await ctx.send(file=discord.File('UpdatedImage.png'))
+            os.remove('UpdatedImage.png')
+        elif font == 'modernsans':
+            font = ImageFont.truetype("Fonts/Modern_Sans_light.otf", 300)
+            draw.text((1300, 1100), content, (206, 66, 43), font=font)
+            img.save('UpdatedImage.png')
+            await ctx.send(file=discord.File('UpdatedImage.png'))
+            os.remove('UpdatedImage.png')
+
+    #   Shitty image manipulation that works but it just ends up looking bad
+    @commands.command(aliases=['achievment', 'mc', 'minecraft'])
+    async def achievement(self, ctx, *, content):
+        img = Image.open('McAchievement.png')
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype('Fonts/Minecraftia.ttf', 12)
+        draw.text((59, 30), content, (255, 255, 255), font=font)
+        img.save('mcget.png')
+        await ctx.send(file=discord.File('mcget.png'))
+        os.remove('mcget.png')
+
+    #   Send a shitty meme, seems to end up just repeating the same meme over and over
+    @commands.command()
+    async def meme(self, ctx):
+        response = requests.get('https://some-random-api.ml/meme')
+        meme = response.json()['image']
+        caption = response.json()['caption']
+        embed = discord.Embed(colour=randomhex(hex))
+        embed.set_image(url=meme)
+        embed.set_footer(text=caption)
+        await ctx.send(embed=embed)
+
+    #   WIP
+    @commands.command(aliases=['mcname'])
+    async def namemc(self, ctx, *, username):
+        parameters = {
+            'username': username
+        }
+        response = requests.get('https://some-random-api.ml/mc', params=parameters)
+        jprint(response.json()['name_history'])
+        history = response.json()['name_history']
+        namehistory = []
+        for d in history:
+            name = d['name']
 
 
 def setup(bot):

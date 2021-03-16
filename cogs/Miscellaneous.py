@@ -1,5 +1,4 @@
 import datetime
-import urllib3
 from discord.ext import commands
 import discord
 import os
@@ -179,10 +178,11 @@ class Miscellaneous(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        messageguild = message.guild.name
+        messageguild = message.guild.id
+        guildname = message.guild.name
 
-        if not messageguild == 'Discord Bots':
-            channel = self.bot.get_channel(message.channel.id)
+        if not messageguild == 110373943822540800:
+            channelname = message.channel
             tz = timezone('US/Eastern')
             c_time = datetime.datetime.now(tz)
             authorid = message.author.id
@@ -194,17 +194,10 @@ class Miscellaneous(commands.Cog):
 
             #   Logging in different colours because it looks nice and makes it easier to scan through messages from different servers and users faster.
             cprint(f"<{c_time.strftime('%I:%M%p')}>", 'cyan', end='')
-            cprint(f" guild:{messageguild}", 'green', end='')
+            cprint(f" guild:{guildname}", 'green', end='')
+            cprint(f" channel:#{channelname}", 'blue', end='')
             cprint(f" {user}(id:{authorid})", 'yellow', end='')
             cprint(f" {msg}", 'magenta')
-
-            if message.author.id == INSULT_USER_ID:
-                http = urllib3.PoolManager()
-                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-                test = http.request('GET', 'https://insult.mattbas.org/api/insult')
-                await channel.send(f"<@{INSULT_USER_ID}>, " + str(test.data, "utf-8"))
-
-                await self.bot.process_commands(message)
 
 
 #   set up all command category
