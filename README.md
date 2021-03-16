@@ -1,6 +1,6 @@
 # b1nzyBotPy
 
-If you've decided that you would like to use this pretty shit bot, I've made instructions on how to do it.
+**Start Guide**
 
 1. Create a file and name it `.env`
 2. Put said file in the b1nzyBotPy folder
