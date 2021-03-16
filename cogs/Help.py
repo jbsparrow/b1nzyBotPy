@@ -314,7 +314,7 @@ class Help(commands.Cog):
         await ctx.send(embed=embed)
 
 #   $urban
-    @help.command(aliases=['ud', 'urbandictionary', 'urbans'])
+    @help.command(aliases=['ud', 'urbandictionary', 'urbans', 'urbandict'])
     async def urban(self, ctx):
         embed = discord.Embed(colour=randomhex(hex), title='**Command:** `urban`')
 
