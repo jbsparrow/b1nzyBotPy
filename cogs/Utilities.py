@@ -19,8 +19,11 @@ intents.messages = True
 client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
 guild = discord.guild
-snipe_message_author = {}
-snipe_message_content = {}
+SnipeMessageAuthor = {}
+SnipeMessageContent = {}
+EditsnipeMessageAuthor = {}
+EditsnipeOriginalContent = {}
+EditsnipeEditedContent = {}
 
 
 class Utilities(commands.Cog):
@@ -202,24 +205,46 @@ class Utilities(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-        snipe_message_author[message.channel.id] = message.author
-        snipe_message_content[message.channel.id] = message.content
-        await asyncio.sleep(60)
-        del snipe_message_author[message.channel.id]
-        del snipe_message_content[message.channel.id]
+        SnipeMessageAuthor[message.channel.id] = message.author
+        SnipeMessageContent[message.channel.id] = message.content
+        await asyncio.sleep(300)
+        del SnipeMessageAuthor[message.channel.id]
+        del SnipeMessageContent[message.channel.id]
 
     @commands.command(aliases=['deleted'])
     async def snipe(self, ctx):
         channel = ctx.channel
         try:  # This piece of code is run if the bot finds anything in the dictionary
-            embed = discord.Embed(title=f"Last deleted message in #{channel.name}", description=snipe_message_content[channel.id], colour=randomhex(hex))
-            embed.set_footer(text=f"This message was sent by {snipe_message_author[channel.id]}")
+            embed = discord.Embed(title=f"Last deleted message in #{channel.name}", description=SnipeMessageContent[channel.id], colour=randomhex(hex))
+            embed.set_footer(text=f"This message was sent by {SnipeMessageAuthor[channel.id]}")
             await ctx.send(embed=embed)
         except:  # This piece of code is run if the bot doesn't find anything in the dictionary
             await ctx.send(f"I couldn't find any recently deleted messages in <#{channel.id}>")
 
     # If the bot sends the embed, but it's empty, it simply means that the deleted message was either a media file or another embed.
     # Snipe command credit to everyone who worked on this https://stackoverflow.com/questions/64383524/discord-py-snipe-command
+
+    @commands.Cog.listener()
+    async def on_message_edit(self, message_before, message_after):
+        EditsnipeMessageAuthor[message_before.channel.id] = message_before.author
+        EditsnipeOriginalContent[message_before.channel.id] = message_before.content
+        EditsnipeEditedContent[message_before.channel.id] = message_after.content
+        await asyncio.sleep(300)
+        del EditsnipeMessageAuthor[message_before.channel.id]
+        del EditsnipeOriginalContent[message_before.channel.id]
+        del EditsnipeEditedContent[message_before.channel.id]
+
+    @commands.command(aliases=['edited'])
+    async def editsnipe(self, ctx):
+        channel = ctx.channel
+        try:  # This piece of code is run if the bot finds anything in the dictionary
+            embed = discord.Embed(title=f"Last edited message in #{channel.name}", colour=randomhex(hex))
+            embed.add_field(name=f'\uFEFF', value=f'**Original message:** {EditsnipeOriginalContent[channel.id]}')
+            embed.add_field(name=f'\uFEFF', value=f'**Edited message:** {EditsnipeEditedContent[channel.id]}')
+            embed.set_footer(text=f"This message was sent by {EditsnipeMessageAuthor[channel.id]}")
+            await ctx.send(embed=embed)
+        except:  # This piece of code is run if the bot doesn't find anything in the dictionary
+            await ctx.send(f"I couldn't find any recently edited messages in <#{channel.id}>")
 
 
 def setup(bot):

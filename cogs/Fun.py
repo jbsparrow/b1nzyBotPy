@@ -78,7 +78,7 @@ class Fun(commands.Cog):
                         embed = discord.Embed(colour=randomhex(hex))
 
                         embed.set_image(url=f'{js["file"]}')
-                        embed.set_footer(text=f'{jscat["fact"]}')
+                        embed.set_footer(text=f'Fun fact: {jscat["fact"]}')
                         await ctx.send(embed=embed)
 
     #   sends a quote pulled from quotable API
@@ -433,7 +433,7 @@ class Fun(commands.Cog):
             await ctx.send('Please select a valid font.\nFont list:```\ncourier\nimpact\nminecraft\nrust\nmonobold\nmodernsans\n```')
         elif font == 'rust':
             font = ImageFont.truetype("Fonts/Rust.ttf", 300)
-            draw.text((1300, 1100), content, (206, 66, 43), font=font)
+            draw.text((1000, 1100), content, (206, 66, 43), font=font)
             img.save('UpdatedImage.png')
             await ctx.send(file=discord.File('UpdatedImage.png'))
             os.remove('UpdatedImage.png')

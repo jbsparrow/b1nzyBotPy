@@ -26,6 +26,7 @@ class Help(commands.Cog):
             embed = discord.Embed(colour=randomhex(hex), title='Categories')
 
             embed.add_field(name='Fun', value='\uFEFF', inline=False)
+            embed.add_field(name='NSFW', value='\uFEFF', inline=False)
             embed.add_field(name='Voice', value='\uFEFF', inline=False)
             embed.add_field(name='Economy', value='\uFEFF', inline=False)
             embed.add_field(name='Moderation', value='\uFEFF', inline=False)
@@ -379,6 +380,17 @@ class Help(commands.Cog):
         embed.set_footer(text=f'If embed is blank the deleted message was either a file or another embed.')
         await ctx.send(embed=embed)
 
+    #   $editsnipe
+    @help.command(aliases=['edited'])
+    async def editsnipe(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `editsnipe`')
+
+        embed.add_field(name=f'**Description:** Shows the last edited message in the current channel.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$editsnipe`', value='\uFEFF', inline=False)
+        embed.add_field(name='**Aliases:**', value='edited', inline=False)
+        embed.set_footer(text=f'If embed is blank the edited message was another embed.')
+        await ctx.send(embed=embed)
+
 #   $insult
     @help.command()
     async def insult(self, ctx):
@@ -438,6 +450,118 @@ class Help(commands.Cog):
         embed.add_field(name=f'**Aliases:**', value='opensource\nsourcecode\nsource\ncode', inline=False)
         await ctx.send(embed=embed)
 
+    #   spreading
+    @help.command(aliases=['spread', 'eagle', 'americaneagle', 'spreaded'])
+    async def spreading(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `spreading`')
+
+        embed.add_field(name=f'**Description:** Sends a picture of someone spreading.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$spreading`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
+    #   gangbang
+    @help.command(aliases=['banggang'])
+    async def gangbang(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `gangbang`')
+
+        embed.add_field(name=f'**Description:** Sends a gangbang picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$gangbang`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
+    #   titfuck
+    @help.command(aliases=['boobjob', 'tittyfuck', 'titdick', 'dicktit', 'titdicks', 'dicktits'])
+    async def titfuck(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `titfuck`')
+
+        embed.add_field(name=f'**Description:** Sends a boobjob picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$titfuck`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Aliases:**', value='boobjob\ntittyfuck', inline=False)
+        await ctx.send(embed=embed)
+
+    #   ahegao
+    @help.command(aliases=['aheago', 'ahegaos', 'aheagos'])
+    async def ahegao(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ahegao`')
+
+        embed.add_field(name=f'**Description:** Sends an ahegao picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$ahegao`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
+    #   hentai
+    @help.command(aliases=['hentais'])
+    async def hentai(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `hentai`')
+
+        embed.add_field(name=f'**Description:** Sends a hentai picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$hentai`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
+    #   ubani
+    @help.command(aliases=['ubanis'])
+    async def ubani(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ubani`')
+
+        embed.add_field(name=f'**Description:** Sends an ubani picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$ubani`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
+    #   bunny
+    @help.command(aliases=['bunnies', 'bunnysuit', 'bunnygirl', 'bunnygirlsuit', 'bunnysuitgirl'])
+    async def bunny(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `bunny`')
+
+        embed.add_field(name=f'**Description:** Sends a bunny suit picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$bunny`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Aliases:**', value='bunnies\nbunnysuit\nbunnygirl', inline=False)
+        await ctx.send(embed=embed)
+
+    #   anal
+    @help.command(aliases=['analsex', 'buttfuck', 'buttstuff'])
+    async def anal(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `anal`')
+
+        embed.add_field(name=f'**Description:** Sends an anal picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$anal`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
+    #   tits
+    @help.command(aliases=['boobs', 'titties', 'honkers', 'tit', 'boob'])
+    async def tits(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `tits`')
+
+        embed.add_field(name=f'**Description:** Sends a titty picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$tits`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Aliases:**', value='boobs\ntitties', inline=False)
+        await ctx.send(embed=embed)
+
+    #   trap
+    @help.command(aliases=['traps', 'femboy', 'femboys'])
+    async def trap(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `trap`')
+
+        embed.add_field(name=f'**Description:** Sends a trap picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$trap`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Aliases:**', value='traps\nfemboy\nfemboys', inline=False)
+        await ctx.send(embed=embed)
+
+    #   neko
+    @help.command(aliases=['nekos'])
+    async def neko(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `neko`')
+
+        embed.add_field(name=f'**Description:** Sends a neko picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$neko`', value='\uFEFF', inline=False)
+        await ctx.send(embed=embed)
+
+    #   ass
+    @help.command(aliases=['booty', 'asscheeks', 'bootycheeks', 'dumptruck', 'badonkadonk'])
+    async def ass(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ass`')
+
+        embed.add_field(name=f'**Description:** Sends a booty picture.', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Usage:** `$ass`', value='\uFEFF', inline=False)
+        embed.add_field(name=f'**Aliases:**', value='booty', inline=False)
+        await ctx.send(embed=embed)
 
 #   Categories
 
@@ -470,6 +594,28 @@ class Help(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    #   NSFW
+    @help.command()
+    async def nsfw(self, ctx):
+        embed = discord.Embed(colour=randomhex(hex), title='NSFW')
+
+        embed.add_field(name=f'\uFEFF', value=f'**$spreading** - Sends a spreading picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$gangbang** - Sends a gangbang picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$titfuck** - Sends a titfuck picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$ahegao** - Sends an ahegao picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$hentai** - Sends a hentai picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$ubani** - Sends an ubani picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$bunny** - Sends a bunny suit picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$anal** - Sends an anal picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$tits** - Sends a titty picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$trap** - Sends a trap/femboy picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$neko** - Sends a neko picture.', inline=False)
+        embed.add_field(name=f'\uFEFF', value=f'**$ass** - Sends an ass picture.', inline=False)
+
+        embed.set_footer(text='Use $help [command] for command usage and aliases.')
+
+        await ctx.send(embed=embed)
+
 #   Miscellaneous
     @help.command()
     async def miscellaneous(self, ctx):
@@ -486,7 +632,8 @@ class Help(commands.Cog):
         embed.add_field(name=f'\uFEFF', value='**$invite** - Sends b1nzy\'s invite link.', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$credits** - Who helped me make b1nzyBot.', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$snipe** - Shows the last deleted message in the current channel.', inline=False)
-        embed.add_field(name=f'\uFEFF', value=f'**suicide** - Sends a list of suicide hotlines.')
+        embed.add_field(name=f'\uFEFF', value='**$editsnipe** - Shows the last edited message in the current channel.', inline=False)
+        embed.add_field(name=f'\uFEFF', value='**suicide** - Sends a list of suicide hotlines.', inline=False)
 
         embed.set_footer(text='Use $help [command] for command usage and aliases.')
 

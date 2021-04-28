@@ -200,7 +200,7 @@ class Miscellaneous(commands.Cog):
             cprint(f"<{c_time.strftime('%I:%M%p')}>", 'cyan', end='')
             cprint(f" guild:{guildname}", 'green', end='')
             cprint(f" channel:#{channelname}", 'blue', end='')
-            cprint(f" {user}(id:{authorid})", 'yellow', end='')
+            cprint(f" {user}(id:{authorid}):", 'yellow', end='')
             cprint(f" {msg}", 'magenta')
 
 
