@@ -17,7 +17,6 @@ client = discord.Client(intents=intents)
 currenttime = datetime.datetime.now()
 guild = discord.guild
 
-INSULT_USER_ID = int(os.getenv('INSULT_USER_ID'))
 YOUR_USER_ID = int(os.getenv('YOUR_USER_ID'))
 FRIEND_USER_ID = int(os.getenv('FRIEND_USER_ID'))
 SERVER_GENERAL = int(os.getenv('SERVER_GENERAL'))
@@ -155,12 +154,6 @@ class Miscellaneous(commands.Cog):
         embed.add_field(name='More inspiration', value='[Click here](https://takeb1nzyto.space)')
 
         await ctx.send(embed=embed)
-
-    @commands.command(hidden=True)
-    @commands.is_owner()
-    async def botstats(self, ctx):
-        """sends fake bot stats cuz I don't know how to make it send real ones and it looks really cool so why not."""
-        await ctx.send("```css\n┌───────────────────────────────────────────┐\n│Info and stats                             │\n├─────────────────────┬─────────────────────┤\n│Bot version          │v2.7.10              │\n│Library version      │JDA 3.8.3_d7c83d3    │\n│JVM version          │11.0.7+10            │\n│                     │(AdoptOpenJDK)       │\n│Available guilds     │12723                │\n│Shard                │Shard [6 / 15] (837) │\n│Uptime               │32:46                │\n│Events received      │123148               │\n│Commands executed    │120243               │\n│Audio connections    │0                    │\n│(curr. shard)        │                     │\n│CPU usage            │0%                   │\n│Memory usage         │Free: 10161MB        │\n│                     │Allocated: 12288MB   │\n│                     │Used: 2127MB         │\n│                     │Last GC: ???         │\n└─────────────────────┴─────────────────────┘\n```")
 
     # sends invite link for b1nzyBot.
     @commands.command()

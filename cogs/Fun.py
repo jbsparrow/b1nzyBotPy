@@ -298,16 +298,13 @@ class Fun(commands.Cog):
         image = response.text
 
         embed = discord.Embed(colour=randomhex(hex))
-
         embed.set_image(url=image)
-
         embed.set_footer(text="This is an AI generated quote.")
 
         await ctx.send(embed=embed)
 
     #   Searches your query on urban dictionary.
     #   Does not return the results from UD, just sends a link that the user can click.
-    @commands.is_nsfw()
     @commands.command(aliases=['urbans', 'urbandictionary', 'urban', 'urbandict'])
     async def ud(self, ctx, *, query='random'):
         """Searches urban dictionary for your input."""
@@ -327,7 +324,6 @@ class Fun(commands.Cog):
 
                     #   Make an embed because all things are better in an embed
                     embed = discord.Embed(colour=randomhex(hex), title=r.word)
-
                     embed.add_field(name='Definition:', value=definition, inline=False)
                     embed.add_field(name='Example:', value=example, inline=False)
 
@@ -492,6 +488,7 @@ class Fun(commands.Cog):
 
     #   WIP
     @commands.command(aliases=['mcname'])
+    @commands.is_owner()
     async def namemc(self, ctx, *, username):
         parameters = {
             'username': username
