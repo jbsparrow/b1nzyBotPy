@@ -76,9 +76,8 @@ class OwnerCog(commands.Cog):
         _save()
         user = self.bot.get_user(YOUR_USER_ID)
         #   Send logs as a backup.
-        await user.send(file=discord.File("cogs/logs.txt"))
         await user.send(file=discord.File("cogs/suggestions.txt"))
-        await user.send('logging off bot.')
+        await user.send('Shutting down bot.')
         await self.bot.close()
 
 
