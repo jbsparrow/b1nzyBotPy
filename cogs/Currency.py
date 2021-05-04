@@ -14,7 +14,7 @@ amounts = {}
 
 
 def _save():
-    with open('amounts.json', 'w+') as f:
+    with open('amounts.json', 'w') as f:
         json.dump(amounts, f)
 
 
@@ -32,7 +32,8 @@ class Currency(commands.Cog):
         try:
             with open('amounts.json') as f:
                 amounts = json.load(f)
-                print('Loaded amounts.json\n')
+                cprint('amounts.json', 'yellow', end='')
+                print(' is loaded\n')
         except FileNotFoundError:
             cprint("Could not load amounts.json", 'red')
             amounts = {}

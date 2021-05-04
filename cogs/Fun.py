@@ -166,6 +166,8 @@ class Fun(commands.Cog):
     @commands.command(aliases=['pat'])
     async def headpat(self, ctx, *, user=None):
         """*pats head*"""
+        if user == "@everyone":
+            await ctx.send("lol")
         if user is None:
             async with aiohttp.ClientSession() as session:
                 async with session.get('https://some-random-api.ml/animu/pat') as g:
@@ -188,6 +190,8 @@ class Fun(commands.Cog):
     @commands.command()
     async def hug(self, ctx, *, user=None):
         """*hugs*"""
+        if user == "@everyone":
+            await ctx.send("lol")
         if user is None:
             async with aiohttp.ClientSession() as session:
                 async with session.get('https://some-random-api.ml/animu/hug') as g:
@@ -332,7 +336,7 @@ class Fun(commands.Cog):
                     limit -= 1
         else:
             #   replace spaces with %20's to function as a proper link
-            query.replace(' ', '%20')
+            query = query.replace(' ', '%20')
             await ctx.send(f'https://urbandictionary.com/define.php?term={query}')
 
     #   Sends a random pokemon :)
@@ -413,12 +417,14 @@ class Fun(commands.Cog):
     # Sends very creative insults, either insults you or insults whoever you specify.
     @commands.command()
     async def insult(self, ctx, *, member=None):
+        if member == "@everyone":
+            await ctx.send("lol")
         if not member:
             member = ctx.author.display_name
         http = urllib3.PoolManager()
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-        test = http.request('GET', 'https://insult.mattbas.org/api/insult')
-        await ctx.send(f"{member}, " + str(test.data, "utf-8"))
+        insult = http.request('GET', 'https://insult.mattbas.org/api/insult')
+        await ctx.send(f"{member}, " + str(insult.data, "utf-8"))
 
     # More shitty image manipulation, this one however is just kinda meant to not be great. I would make it good if the text looked centred when it's at the middle of the file but it doesn't and I don't know where to put it to properly centre it sooo.
     @commands.command()
