@@ -239,8 +239,8 @@ class Utilities(commands.Cog):
         channel = ctx.channel
         try:  # This piece of code is run if the bot finds anything in the dictionary
             embed = discord.Embed(title=f"Last edited message in #{channel.name}", colour=randomhex(hex))
-            embed.add_field(name=f'\uFEFF', value=f'**Original message:** {EditsnipeOriginalContent[channel.id]}')
-            embed.add_field(name=f'\uFEFF', value=f'**Edited message:** {EditsnipeEditedContent[channel.id]}')
+            embed.add_field(name=f'\uFEFF', value=f'**Original message:** {EditsnipeOriginalContent[channel.id]}', inline=False)
+            embed.add_field(name=f'\uFEFF', value=f'**Edited message:** {EditsnipeEditedContent[channel.id]}', inline=False)
             embed.set_footer(text=f"This message was sent by {EditsnipeMessageAuthor[channel.id]}")
             await ctx.send(embed=embed)
         except:  # This piece of code is run if the bot doesn't find anything in the dictionary
