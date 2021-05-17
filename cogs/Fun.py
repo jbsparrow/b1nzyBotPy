@@ -420,7 +420,7 @@ class Fun(commands.Cog):
         if member == "@everyone":
             await ctx.send("lol")
         if not member:
-            member = ctx.author.display_name
+            member = f"<@{ctx.author.id}>"
         http = urllib3.PoolManager()
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         insult = http.request('GET', 'https://insult.mattbas.org/api/insult')
