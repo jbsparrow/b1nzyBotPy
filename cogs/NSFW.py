@@ -179,7 +179,7 @@ class NSFW(commands.Cog):
                 imagecount = len(imagelist)
                 await ctx.send(f'That image ID is invalid. Please try a number from 1 to {imagecount}.')
 
-    @commands.command(aliases=['bunnies', 'bunnysuit', 'bunnygirl', 'bunnygirlsuit', 'bunnysuitgirl'])
+    @commands.command(aliases=['bunnies', 'bunnysuit', 'bunnygirl', 'bunnygirlsuit', 'bunnysuitgirl', 'bunmy', 'bumny'])
     @commands.is_nsfw()
     async def bunny(self, ctx, pictureid='random'):
         """Bunny girls."""
@@ -283,7 +283,7 @@ class NSFW(commands.Cog):
     @commands.is_nsfw()
     async def neko(self, ctx, pictureid='random'):
         """Nekos."""
-        timesused("trap")
+        timesused("neko")
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Nekos"))
             file = discord.File("cogs/NSFW/Nekos/" + filename, filename="image.png")
