@@ -29,7 +29,7 @@ guild = discord.guild
 
 #   Random hex code generator
 def randomhex(x):
-   hex_vals="123456789ABCDEF"
+    hex_vals="123456789ABCDEF"
     hex=''.join(random.choice(list(hex_vals)) for _ in range(int(6)))
     hex="0x"+hex
     hex = int(hex, 16)
