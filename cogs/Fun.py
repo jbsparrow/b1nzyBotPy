@@ -29,22 +29,12 @@ guild = discord.guild
 
 #   Random hex code generator
 def randomhex(x):
-    #   Define the possible characters in a hex code.
-    hexvalues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
-    #   Define the base of the hex code.
-    hexbase = '0x'
-
-    #   Make the hex code.
-    hex = hexbase + random.choice(hexvalues)
-    hex = hex + random.choice(hexvalues)
-    hex = hex + random.choice(hexvalues)
-    hex = hex + random.choice(hexvalues)
-    hex = hex + random.choice(hexvalues)
-    hex = hex + random.choice(hexvalues)
-
-    #   Convert it into an actual hex code.
+    hex_vals="123456789ABCDEF"
+    hex=''.join(random.choice(list(hex_vals)) for _ in range(int(6)))
+    hex="0x"+hex
     hex = int(hex, 16)
-    return hex
+    return hex 
+
 
 
 def jprint(obj):
