@@ -42,11 +42,11 @@ class Currency(commands.Cog):
     async def balance(self, ctx):
         id = str(ctx.message.author.id)
         if id in amounts:
-            await ctx.send("You have ${} in the bank".format(amounts[id]))
+            await ctx.send(f"You have ${amounts[id]} in the bank")
             _save()
         elif id not in amounts:
             amounts[id] = 100
-            await ctx.send("You have ${} in the bank".format(amounts[id]))
+            await ctx.send(f"You have ${amounts[id]} in the bank")
             _save()
 
     @commands.cooldown(1, 30, commands.BucketType.user)
@@ -66,8 +66,7 @@ class Currency(commands.Cog):
     @work.error
     async def work_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
-            msg = 'This command is on cooldown for {:.1f} more seconds'.format(error.retry_after)
-            await ctx.send(msg)
+            await ctx.send(f"This command is on cooldown for {error.retry_after} more seconds.")
         else:
             raise error
 
