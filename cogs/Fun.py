@@ -77,7 +77,6 @@ class Fun(commands.Cog):
         """Fetches a random quote via quotable."""
         async with aiohttp.ClientSession() as session:
             async with session.get('https://api.quotable.io/random') as q:
-                # import json
                 js = await q.json()
                 await ctx.send(f"{js['content']}")
 
