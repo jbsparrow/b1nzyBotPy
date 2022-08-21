@@ -349,7 +349,6 @@ class Fun(commands.Cog):
     async def news(self, ctx, source='list'):
         """Send news from a source of your choice.
         Use list to show all sources."""
-
         if source == "bbc":
             d = feedparser.parse("http://feeds.bbci.co.uk/news/rss.xml?edition=us#")
             a = d['entries'][0]['link']
@@ -406,6 +405,7 @@ class Fun(commands.Cog):
     # Sends very creative insults, either insults you or insults whoever you specify.
     @commands.command()
     async def insult(self, ctx, *, member=None):
+        """Insult a user"""
         if member == "@everyone":
             await ctx.send("lol")
         if not member:
@@ -413,11 +413,12 @@ class Fun(commands.Cog):
         http = urllib3.PoolManager()
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         insult = http.request('GET', 'https://insult.mattbas.org/api/insult')
-        await ctx.send(f"{member}, " + str(insult.data, "utf-8"))
+        await ctx.send(f"{member}, {str(insult.data, 'utf-8')}")
 
     # More shitty image manipulation, this one however is just kinda meant to not be great. I would make it good if the text looked centred when it's at the middle of the file but it doesn't and I don't know where to put it to properly centre it sooo.
     @commands.command()
     async def edit(self, ctx, font=None, *, content=':)'):
+        """Sad command to put text onto a static background"""
         img = Image.open("Background.png")
         draw = ImageDraw.Draw(img)
         if font not in ['courier', 'impact', 'minecraft', 'rust', 'monobold', 'modernsans']:
@@ -462,6 +463,7 @@ class Fun(commands.Cog):
     #   Shitty image manipulation that works but it just ends up looking bad
     @commands.command(aliases=['achievment', 'mc', 'minecraft'])
     async def achievement(self, ctx, *, content):
+        """Make a minecraft achievement image"""
         img = Image.open('McAchievement.png')
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype('Fonts/Minecraftia.ttf', 12)
@@ -473,6 +475,7 @@ class Fun(commands.Cog):
     #   Send a shitty meme, seems to end up just repeating the same meme over and over
     @commands.command()
     async def meme(self, ctx):
+        """Send a random meme"""
         response = requests.get('https://some-random-api.ml/meme')
         meme = response.json()['image']
         caption = response.json()['caption']
@@ -485,6 +488,7 @@ class Fun(commands.Cog):
     @commands.command(aliases=['mcname'])
     @commands.is_owner()
     async def namemc(self, ctx, *, username):
+        """Check the status of a minecraft username using NameMC"""
         parameters = {
             'username': username
         }
