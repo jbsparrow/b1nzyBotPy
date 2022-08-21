@@ -62,7 +62,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Spreading"))
             file = discord.File("cogs/NSFW/Spreading/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["spreading"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -70,7 +70,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Spreading")):
                 file = discord.File("cogs/NSFW/Spreading/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["spreading"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -87,7 +87,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/BoobJobs"))
             file = discord.File("cogs/NSFW/BoobJobs/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["titfuck"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -95,7 +95,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/BoobJobs")):
                 file = discord.File("cogs/NSFW/BoobJobs/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["titfuck"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -112,7 +112,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Ahegao"))
             file = discord.File("cogs/NSFW/Ahegao/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["ahegao"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -120,7 +120,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Ahegao")):
                 file = discord.File("cogs/NSFW/Ahegao/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["ahegao"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -137,7 +137,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Hentai"))
             file = discord.File("cogs/NSFW/Hentai/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["hentai"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -145,7 +145,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Hentai")):
                 file = discord.File("cogs/NSFW/Hentai/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["hentai"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -162,7 +162,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Ubanis"))
             file = discord.File("cogs/NSFW/Ubanis/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["ubani"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -170,7 +170,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Ubanis")):
                 file = discord.File("cogs/NSFW/Ubanis/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["ubani"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -187,7 +187,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/BunnySuits"))
             file = discord.File("cogs/NSFW/BunnySuits/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["bunny"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -195,7 +195,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/BunnySuits")):
                 file = discord.File("cogs/NSFW/BunnySuits/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["bunny"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -212,7 +212,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Anal"))
             file = discord.File("cogs/NSFW/Anal/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["anal"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -220,7 +220,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Anal")):
                 file = discord.File("cogs/NSFW/Anal/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["anal"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -237,7 +237,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Boobs"))
             file = discord.File("cogs/NSFW/Boobs/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["tits"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -245,7 +245,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Boobs")):
                 file = discord.File("cogs/NSFW/Boobs/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["tits"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -262,7 +262,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Traps"))
             file = discord.File("cogs/NSFW/Traps/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["trap"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -270,7 +270,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Traps")):
                 file = discord.File("cogs/NSFW/Traps/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["trap"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -287,7 +287,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Nekos"))
             file = discord.File("cogs/NSFW/Nekos/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["neko"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -295,7 +295,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Nekos")):
                 file = discord.File("cogs/NSFW/Nekos/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["neko"]} times.')
                 await ctx.send(file=file, embed=embed)
@@ -312,7 +312,7 @@ class NSFW(commands.Cog):
         if pictureid == "random":
             filename = random.choice(os.listdir("cogs/NSFW/Booty"))
             file = discord.File("cogs/NSFW/Booty/" + filename, filename="image.png")
-            embed = discord.Embed(colour=randomhex(hex))
+            embed = discord.Embed(colour=randomhex())
             embed.set_image(url="attachment://image.png")
             embed.set_footer(text=f'This command has been used {usagecount["ass"]} times.\nID: {filename.replace(".png", "")}')
             await ctx.send(file=file, embed=embed)
@@ -320,7 +320,7 @@ class NSFW(commands.Cog):
             picturepath = pictureid + ".png"
             if picturepath in (os.listdir("cogs/NSFW/Booty")):
                 file = discord.File("cogs/NSFW/Booty/" + picturepath, filename="image.png")
-                embed = discord.Embed(colour=randomhex(hex))
+                embed = discord.Embed(colour=randomhex())
                 embed.set_image(url="attachment://image.png")
                 embed.set_footer(text=f'This command has been used {usagecount["ass"]} times.')
                 await ctx.send(file=file, embed=embed)
