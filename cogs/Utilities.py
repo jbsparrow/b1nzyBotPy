@@ -190,7 +190,7 @@ class Utilities(commands.Cog):
 
     @commands.command(aliases=['suicidal', 'selfharm', 'helpme'])
     async def suicide(self, ctx):
-        embed = discord.Embed(title='List of Suicide Hotlines', colour=randomhex(hex), url='https://en.wikipedia.org/wiki/List_of_suicide_crisis_lines/')
+        embed = discord.Embed(title='List of Suicide Hotlines', colour=randomhex(), url='https://en.wikipedia.org/wiki/List_of_suicide_crisis_lines/')
 
         embed.add_field(name='\uFEFF', value='Mental Health Resources:', inline=False)
 
@@ -215,7 +215,7 @@ class Utilities(commands.Cog):
     async def snipe(self, ctx):
         channel = ctx.channel
         try:  # This piece of code is run if the bot finds anything in the dictionary
-            embed = discord.Embed(title=f"Last deleted message in #{channel.name}", description=SnipeMessageContent[channel.id], colour=randomhex(hex))
+            embed = discord.Embed(title=f"Last deleted message in #{channel.name}", description=SnipeMessageContent[channel.id], colour=randomhex())
             embed.set_footer(text=f"This message was sent by {SnipeMessageAuthor[channel.id]}")
             await ctx.send(embed=embed)
         except:  # This piece of code is run if the bot doesn't find anything in the dictionary
@@ -238,7 +238,7 @@ class Utilities(commands.Cog):
     async def editsnipe(self, ctx):
         channel = ctx.channel
         try:  # This piece of code is run if the bot finds anything in the dictionary
-            embed = discord.Embed(title=f"Last edited message in #{channel.name}", colour=randomhex(hex))
+            embed = discord.Embed(title=f"Last edited message in #{channel.name}", colour=randomhex())
             embed.add_field(name=f'\uFEFF', value=f'**Original message:** {EditsnipeOriginalContent[channel.id]}', inline=False)
             embed.add_field(name=f'\uFEFF', value=f'**Edited message:** {EditsnipeEditedContent[channel.id]}', inline=False)
             embed.set_footer(text=f"This message was sent by {EditsnipeMessageAuthor[channel.id]}")
