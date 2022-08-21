@@ -23,7 +23,7 @@ class Help(commands.Cog):
     @commands.group()
     async def help(self, ctx):
         if ctx.invoked_subcommand is None:
-            embed = discord.Embed(colour=randomhex(hex), title='Categories')
+            embed = discord.Embed(colour=randomhex(), title='Categories')
 
             embed.add_field(name='Fun', value='\uFEFF', inline=False)
             embed.add_field(name='NSFW', value='\uFEFF', inline=False)
@@ -39,7 +39,7 @@ class Help(commands.Cog):
 
     @help.command()
     async def fun(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='Fun')
+        embed = discord.Embed(colour=randomhex(), title='Fun')
 
         embed.add_field(name=f'\uFEFF', value=f'**$cat** - Sends a random cat picture!', inline=False)
         embed.add_field(name=f'\uFEFF', value=f'**$quote** - Sends a quote from a pre-selected list of quotes.', inline=False)
@@ -71,7 +71,7 @@ class Help(commands.Cog):
     #   $cat
     @help.command(aliases=['cats', 'catpictures', 'catpicture', 'catpics', 'catpic'])
     async def cat(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `cat`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `cat`')
 
         embed.add_field(name=f'**Description:** Sends a random cat picture!', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$cat`', value='\uFEFF', inline=False)
@@ -81,7 +81,7 @@ class Help(commands.Cog):
     #   $quote
     @help.command()
     async def quote(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `quote`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `quote`')
 
         embed.add_field(name=f'**Description:** Sends a quote from a pre-selected list of quotes.', value='\uFEFF',
                         inline=False)
@@ -91,7 +91,7 @@ class Help(commands.Cog):
     #   $quote2
     @help.command()
     async def quote2(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `quote2`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `quote2`')
 
         embed.add_field(name=f'**Description:** Sends a random quote.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$quote2`', value='\uFEFF', inline=False)
@@ -100,7 +100,7 @@ class Help(commands.Cog):
     #   $headpat
     @help.command()
     async def headpat(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `headpat`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `headpat`')
 
         embed.add_field(name=f'**Description:** Sends a headpat gif.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$headpat`', value='\uFEFF', inline=False)
@@ -109,7 +109,7 @@ class Help(commands.Cog):
     #   $hug
     @help.command()
     async def hug(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `hug`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `hug`')
 
         embed.add_field(name=f'**Description:** Sends a hugging gif.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$hug`', value='\uFEFF', inline=False)
@@ -118,7 +118,7 @@ class Help(commands.Cog):
     #   $kiss
     @help.command()
     async def kiss(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `kiss`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `kiss`')
 
         embed.add_field(name=f'**Command:** $kiss', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Description:** Sends a kissing gif.', value='\uFEFF', inline=False)
@@ -128,7 +128,7 @@ class Help(commands.Cog):
     #   $slap
     @help.command()
     async def slap(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `slap`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `slap`')
 
         embed.add_field(name=f'**Description:** Sends a slapping gif.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$slap`', value='\uFEFF', inline=False)
@@ -137,7 +137,7 @@ class Help(commands.Cog):
     #   $topic
     @help.command()
     async def topic(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `topic`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `topic`')
 
         embed.add_field(name=f'**Description:** Sends a topic of conversation.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$topic`', value='\uFEFF', inline=False)
@@ -146,7 +146,7 @@ class Help(commands.Cog):
     #   $inspire
     @help.command()
     async def inspire(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `inspire`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `inspire`')
 
         embed.add_field(name=f'**Description:** Sends an AI generated inspirational quote.', value='\uFEFF',
                         inline=False)
@@ -157,7 +157,7 @@ class Help(commands.Cog):
     #   $pokemon
     @help.command()
     async def pokemon(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `pokemon`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `pokemon`')
 
         embed.add_field(name=f'**Description:** Sends a random pokemon.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$pokemon`', value='\uFEFF', inline=False)
@@ -166,7 +166,7 @@ class Help(commands.Cog):
     #   $rps
     @help.command(aliases=['rockpaperscissors'])
     async def rps(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `rps`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `rps`')
 
         embed.add_field(
             name=f'**Description:** Play rock paper scissors with b1nzy.\nYou can use numbers 1-3 or words as your choice.\n1=rock, 2=paper, 3=scissors', value='\uFEFF', inline=False)
@@ -177,7 +177,7 @@ class Help(commands.Cog):
     #   $coinflip
     @help.command(aliases=['flip', 'coin', '50/50', '5050'])
     async def coinflip(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `coinflip`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `coinflip`')
 
         embed.add_field(name=f'**Description:** Flips a coin, leave the input blank if you\'re not guessing the side.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$coinflip [side]`', value='\uFEFF', inline=False)
@@ -187,7 +187,7 @@ class Help(commands.Cog):
     #   $8ball
     @help.command(aliases=['8ball'])
     async def eightball(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `8ball`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `8ball`')
 
         embed.add_field(name=f'**Description:** Ask a yes/no question, and b1nzy will answer.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$8ball [question]`', value='\uFEFF', inline=False)
@@ -197,27 +197,17 @@ class Help(commands.Cog):
     #   $uwu
     @help.command(aliases=['uwuize', 'owo', 'owoize'])
     async def uwu(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `uwu`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `uwu`')
 
         embed.add_field(name=f'**Description:** UwUizes your message.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$uwu [input]`', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Aliases:**', value='uwuize\nowo\nowoize', inline=False)
         await ctx.send(embed=embed)
 
-    #   $xuwu
-    @help.command(aliases=['xuwuize', 'xowo', 'xowoize'])
-    async def xuwu(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `xuwu`')
-
-        embed.add_field(name=f'**Description:** UwUizes your message but with a bit more ✨spice✨ to it.', value='\uFEFF', inline=False)
-        embed.add_field(name=f'**Usage:** `$xuwu [input]`', value='\uFEFF', inline=False)
-        embed.add_field(name=f'**Aliases:**', value='xuwuize\nxowo\nxowoize', inline=False)
-        await ctx.send(embed=embed)
-
     #   $urban
     @help.command(aliases=['ud', 'urbandictionary', 'urbans', 'urbandict'])
     async def urban(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `urban`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `urban`')
 
         embed.add_field(name=f'**Description:** Look up your input on urban dictionary.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$urban [input]`', value='\uFEFF', inline=False)
@@ -227,7 +217,7 @@ class Help(commands.Cog):
     #   $insult
     @help.command()
     async def insult(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `insult`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `insult`')
 
         embed.add_field(name=f'**Description:** Insults the specified user, if noone is specified, insults you.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$insult`', value='\uFEFF', inline=False)
@@ -236,7 +226,7 @@ class Help(commands.Cog):
     #   $achievement
     @help.command()
     async def achievement(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `achievement`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `achievement`')
 
         embed.add_field(name=f'**Description:** Makes your input into a minecraft achievement.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$achievement <achievement>`', value='\uFEFF', inline=False)
@@ -247,7 +237,7 @@ class Help(commands.Cog):
     #   $edit
     @help.command()
     async def edit(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `edit`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `edit`')
 
         embed.add_field(name=f'**Description:** Edits whatever you want onto an ugly background in the specified font. For extra ugliness it won\'t be centred.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$edit <font> <content>`', value='\uFEFF', inline=False)
@@ -257,7 +247,7 @@ class Help(commands.Cog):
     #   $meme
     @help.command()
     async def meme(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `meme`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `meme`')
 
         embed.add_field(name=f'**Description:** Sends a meme that\'s probably not very funny.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$meme`', value='\uFEFF', inline=False)
@@ -268,7 +258,7 @@ class Help(commands.Cog):
     #   NSFW
     @help.command()
     async def nsfw(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='NSFW')
+        embed = discord.Embed(colour=randomhex(), title='NSFW')
 
         embed.add_field(name=f'\uFEFF', value=f'**$spreading** - Sends a spreading picture.', inline=False)
         embed.add_field(name=f'\uFEFF', value=f'**$gangbang** - Sends a gangbang picture.', inline=False)
@@ -292,7 +282,7 @@ class Help(commands.Cog):
     #   spreading
     @help.command(aliases=['spread', 'eagle', 'americaneagle', 'spreaded'])
     async def spreading(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `spreading`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `spreading`')
 
         embed.add_field(name=f'**Description:** Sends a picture of someone spreading.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$spreading`', value='\uFEFF', inline=False)
@@ -301,7 +291,7 @@ class Help(commands.Cog):
     #   gangbang
     @help.command(aliases=['banggang'])
     async def gangbang(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `gangbang`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `gangbang`')
 
         embed.add_field(name=f'**Description:** Sends a gangbang picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$gangbang`', value='\uFEFF', inline=False)
@@ -310,7 +300,7 @@ class Help(commands.Cog):
     #   titfuck
     @help.command(aliases=['boobjob', 'tittyfuck', 'titdick', 'dicktit', 'titdicks', 'dicktits'])
     async def titfuck(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `titfuck`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `titfuck`')
 
         embed.add_field(name=f'**Description:** Sends a boobjob picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$titfuck`', value='\uFEFF', inline=False)
@@ -320,7 +310,7 @@ class Help(commands.Cog):
     #   ahegao
     @help.command(aliases=['aheago', 'ahegaos', 'aheagos'])
     async def ahegao(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ahegao`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `ahegao`')
 
         embed.add_field(name=f'**Description:** Sends an ahegao picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$ahegao`', value='\uFEFF', inline=False)
@@ -329,7 +319,7 @@ class Help(commands.Cog):
     #   hentai
     @help.command(aliases=['hentais'])
     async def hentai(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `hentai`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `hentai`')
 
         embed.add_field(name=f'**Description:** Sends a hentai picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$hentai`', value='\uFEFF', inline=False)
@@ -338,7 +328,7 @@ class Help(commands.Cog):
     #   ubani
     @help.command(aliases=['ubanis'])
     async def ubani(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ubani`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `ubani`')
 
         embed.add_field(name=f'**Description:** Sends an ubani picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$ubani`', value='\uFEFF', inline=False)
@@ -347,7 +337,7 @@ class Help(commands.Cog):
     #   bunny
     @help.command(aliases=['bunnies', 'bunnysuit', 'bunnygirl', 'bunnygirlsuit', 'bunnysuitgirl'])
     async def bunny(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `bunny`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `bunny`')
 
         embed.add_field(name=f'**Description:** Sends a bunny suit picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$bunny`', value='\uFEFF', inline=False)
@@ -357,7 +347,7 @@ class Help(commands.Cog):
     #   anal
     @help.command(aliases=['analsex', 'buttfuck', 'buttstuff'])
     async def anal(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `anal`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `anal`')
 
         embed.add_field(name=f'**Description:** Sends an anal picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$anal`', value='\uFEFF', inline=False)
@@ -366,7 +356,7 @@ class Help(commands.Cog):
     #   tits
     @help.command(aliases=['boobs', 'titties', 'honkers', 'tit', 'boob'])
     async def tits(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `tits`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `tits`')
 
         embed.add_field(name=f'**Description:** Sends a titty picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$tits`', value='\uFEFF', inline=False)
@@ -376,7 +366,7 @@ class Help(commands.Cog):
     #   trap
     @help.command(aliases=['traps', 'femboy', 'femboys'])
     async def trap(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `trap`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `trap`')
 
         embed.add_field(name=f'**Description:** Sends a trap picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$trap`', value='\uFEFF', inline=False)
@@ -386,7 +376,7 @@ class Help(commands.Cog):
     #   neko
     @help.command(aliases=['nekos'])
     async def neko(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `neko`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `neko`')
 
         embed.add_field(name=f'**Description:** Sends a neko picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$neko`', value='\uFEFF', inline=False)
@@ -395,7 +385,7 @@ class Help(commands.Cog):
     #   ass
     @help.command(aliases=['booty', 'asscheeks', 'bootycheeks', 'dumptruck', 'badonkadonk'])
     async def ass(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ass`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `ass`')
 
         embed.add_field(name=f'**Description:** Sends a booty picture.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$ass`', value='\uFEFF', inline=False)
@@ -406,7 +396,7 @@ class Help(commands.Cog):
 
     @help.command(aliases=['misc', 'miscilleanous', 'misclanous', 'miscelanous', 'miscellanous', 'miscellanious', 'miscelaneous'])
     async def miscellaneous(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='Miscellaneous')
+        embed = discord.Embed(colour=randomhex(), title='Miscellaneous')
 
         embed.add_field(name=f'\uFEFF', value='**$suggest** - Suggest new features and maybe they\'ll get added. <:smiling:795774009136513084>', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$joined** - Shows when a member joined the server.', inline=False)
@@ -432,7 +422,7 @@ class Help(commands.Cog):
     #   $suggest
     @help.command()
     async def suggest(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `suggest`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `suggest`')
 
         embed.add_field(name=f'**Description:** Suggest new features and maybe they\'ll get added. <:smiling:795774009136513084>', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$suggest [suggestion]`', value='\uFEFF', inline=False)
@@ -441,7 +431,7 @@ class Help(commands.Cog):
     #   $joined
     @help.command()
     async def joined(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `joined`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `joined`')
 
         embed.add_field(name=f'**Description:** Shows when a member joined the server.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$joined [member]`', value='\uFEFF', inline=False)
@@ -450,7 +440,7 @@ class Help(commands.Cog):
     #   $toprole
     @help.command(aliases=['top_role', 'show_toprole'])
     async def toprole(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `toprole`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `toprole`')
 
         embed.add_field(name=f'**Description:** Shows a member\'s highest role.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$toprole [member]`', value='\uFEFF', inline=False)
@@ -459,7 +449,7 @@ class Help(commands.Cog):
     #   $perms
     @help.command(aliases=['perms_for', 'permissions', 'check_permissions'])
     async def perms(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `perms`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `perms`')
 
         embed.add_field(name=f'**Description:** Shows the specified member\'s permissions.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$perms [member]`', value='\uFEFF', inline=False)
@@ -468,7 +458,7 @@ class Help(commands.Cog):
     #   $random
     @help.command(aliases=['rand', 'randint'])
     async def random(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `rand`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `rand`')
 
         embed.add_field(name=f'**Description:** Chooses a random number between the min and max that you specify.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$rand [minimum] [maximum]`', value='\uFEFF', inline=False)
@@ -478,7 +468,7 @@ class Help(commands.Cog):
     #   $translate
     @help.command()
     async def translate(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `translate`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `translate`')
 
         embed.add_field(name=f'**Description:** Translates the inputted text to english.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$translate [input]`', value='\uFEFF', inline=False)
@@ -487,7 +477,7 @@ class Help(commands.Cog):
     #   $math
     @help.command()
     async def math(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `math`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `math`')
 
         embed.add_field(name=f'**Description:** Does math. Can only do simple operations (+, -, /, and *).', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$math [number] [operation] [number]`', value='\uFEFF', inline=False)
@@ -496,7 +486,7 @@ class Help(commands.Cog):
     #   $ping
     @help.command()
     async def ping(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ping`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `ping`')
 
         embed.add_field(name=f'**Description:** Sends b1nzy\'s ping.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$ping`', value='\uFEFF', inline=False)
@@ -505,7 +495,7 @@ class Help(commands.Cog):
     #   $invite
     @help.command()
     async def invite(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `invite`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `invite`')
 
         embed.add_field(name=f'**Description:** Sends b1nzy\'s invite link.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$invite`', value='\uFEFF', inline=False)
@@ -514,7 +504,7 @@ class Help(commands.Cog):
     #   $credits
     @help.command(aliases=['credit'])
     async def credits(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `credits`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `credits`')
 
         embed.add_field(name=f'**Description:** Who helped me make b1nzyBot.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$credits`', value='\uFEFF', inline=False)
@@ -524,7 +514,7 @@ class Help(commands.Cog):
     #   github
     @help.command(aliases=['code', 'opensource', 'sourcecode', 'source'])
     async def github(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `github`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `github`')
 
         embed.add_field(name=f'**Description:** Sends the link to b1nzyBot\'s github repo.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$github`', value='\uFEFF', inline=False)
@@ -534,7 +524,7 @@ class Help(commands.Cog):
     #   $snipe
     @help.command(aliases=['deleted'])
     async def snipe(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `snipe`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `snipe`')
 
         embed.add_field(name=f'**Description:** Shows the last deleted message in the current channel.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$snipe`', value='\uFEFF', inline=False)
@@ -545,7 +535,7 @@ class Help(commands.Cog):
     #   $editsnipe
     @help.command(aliases=['edited'])
     async def editsnipe(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `editsnipe`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `editsnipe`')
 
         embed.add_field(name=f'**Description:** Shows the last edited message in the current channel.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$editsnipe`', value='\uFEFF', inline=False)
@@ -556,7 +546,7 @@ class Help(commands.Cog):
     #   $suicide
     @help.command()
     async def suicide(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `suicide`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `suicide`')
 
         embed.add_field(name=f'**Description:** Sends a list of suicide hotlines.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$suicide`', value='\uFEFF', inline=False)
@@ -567,7 +557,7 @@ class Help(commands.Cog):
 
     @help.command()
     async def voice(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='Voice')
+        embed = discord.Embed(colour=randomhex(), title='Voice')
 
         embed.add_field(name=f'\uFEFF', value='**$join** - Joins the voice channel the user is currently in.', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$leave** - Disconnects b1nzy from the voice channel they\'re currently in.', inline=False)
@@ -581,7 +571,7 @@ class Help(commands.Cog):
     #   $join
     @help.command(aliases=['connect'])
     async def join(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `join`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `join`')
 
         embed.add_field(name=f'**Description:** Joins the voice channel the user is currently in.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$join`', value='\uFEFF', inline=False)
@@ -591,7 +581,7 @@ class Help(commands.Cog):
     #   $disconnect
     @help.command(aliases=['dc', 'disconnect', 'fuckoff'])
     async def leave(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `leave`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `leave`')
 
         embed.add_field(name=f'**Description:** Disconnects b1nzy from the voice channel they\'re currently in.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$leave`', value='\uFEFF', inline=False)
@@ -602,7 +592,7 @@ class Help(commands.Cog):
 
     @help.command()
     async def economy(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='Economy')
+        embed = discord.Embed(colour=randomhex(), title='Economy')
 
         embed.add_field(name=f'\uFEFF', value='**$work** - Work to get money.', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$bal** - Displays your balance.', inline=False)
@@ -617,7 +607,7 @@ class Help(commands.Cog):
     #   $work
     @help.command()
     async def work(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `work`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `work`')
 
         embed.add_field(name=f'**Description:** Work to get money.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$work`', value='\uFEFF', inline=False)
@@ -627,7 +617,7 @@ class Help(commands.Cog):
     #   $balance
     @help.command(aliases=['balance'])
     async def bal(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `bal`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `bal`')
 
         embed.add_field(name=f'**Description:** Displays your balance.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$bal`', value='\uFEFF', inline=False)
@@ -638,7 +628,7 @@ class Help(commands.Cog):
     #   $pay
     @help.command(aliases=['transfer', 'give'])
     async def pay(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `pay`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `pay`')
 
         embed.add_field(name=f'**Description:** Transfer money to other users.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$pay [member] [amount]`', value='\uFEFF', inline=False)
@@ -650,7 +640,7 @@ class Help(commands.Cog):
 
     @help.command()
     async def moderation(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='Moderation')
+        embed = discord.Embed(colour=randomhex(), title='Moderation')
 
         embed.add_field(name=f'\uFEFF', value='**$kick** - Kicks the specified member.', inline=False)
         embed.add_field(name=f'\uFEFF', value='**$ban** - Bans the specified member.', inline=False)
@@ -666,7 +656,7 @@ class Help(commands.Cog):
     #   $kick
     @help.command()
     async def kick(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `kick`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `kick`')
 
         embed.add_field(name=f'**Description:** Kicks the specified member.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$kick [member]`', value='\uFEFF', inline=False)
@@ -675,7 +665,7 @@ class Help(commands.Cog):
     #   $ban
     @help.command()
     async def ban(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `ban`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `ban`')
 
         embed.add_field(name=f'**Description:** Bans the specified member.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$ban [member]`', value='\uFEFF', inline=False)
@@ -684,7 +674,7 @@ class Help(commands.Cog):
     #   $unban
     @help.command()
     async def unban(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `unban`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `unban`')
 
         embed.add_field(name=f'**Description:** Unbans the specified member.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$unban [member]`', value='\uFEFF', inline=False)
@@ -693,7 +683,7 @@ class Help(commands.Cog):
     #   $clear
     @help.command(aliases=['purge'])
     async def clear(self, ctx):
-        embed = discord.Embed(colour=randomhex(hex), title='**Command:** `clear`')
+        embed = discord.Embed(colour=randomhex(), title='**Command:** `clear`')
 
         embed.add_field(name=f'**Description:** Clears the specified number of messages, if left blank 10 messages will be cleared.', value='\uFEFF', inline=False)
         embed.add_field(name=f'**Usage:** `$clear [amount]`', value='\uFEFF', inline=False)
