@@ -51,7 +51,7 @@ class Miscellaneous(commands.Cog):
         if message.author.id in (YOUR_USER_ID, FRIEND_USER_ID):
             await channelsend.send(f'{arg}')
             # the code below this comment is irrelevant, the only thing needed is the await channel.send and if you want you could keep that else and put a return statement after it.
-            usersentembed = discord.Embed(colour=randomhex(hex))
+            usersentembed = discord.Embed(colour=randomhex())
 
             usersentembed.set_footer(text='User sent')
 
@@ -65,7 +65,7 @@ class Miscellaneous(commands.Cog):
             await user2send.send(embed=usersentembed)
             print(f'\n\nIMPORTANT\n{message.author} sent "{arg}" in {channelsend}.\nIMPORTANT\n')
         else:
-            usersentembed = discord.Embed(colour=randomhex(hex))
+            usersentembed = discord.Embed(colour=randomhex())
 
             usersentembed.set_footer(text='User tried to send')
 
@@ -95,7 +95,7 @@ class Miscellaneous(commands.Cog):
         if message.author.id in (YOUR_USER_ID, FRIEND_USER_ID):
             await channelsend.send(f'{arg}')
             # the code below this comment is irrelevant, the only thing needed is the await channel.send and if you want you could keep that else and put a return statement after it.
-            usersentembed = discord.Embed(colour=randomhex(hex))
+            usersentembed = discord.Embed(colour=randomhex())
 
             usersentembed.set_footer(text='User sent')
 
@@ -109,7 +109,7 @@ class Miscellaneous(commands.Cog):
             await user2send.send(embed=usersentembed)
             print(f'\n\nIMPORTANT\n{message.author} sent "{arg}" in {channelsend}.\nIMPORTANT\n')
         else:
-            usersentembed = discord.Embed(colour=randomhex(hex))
+            usersentembed = discord.Embed(colour=randomhex())
 
             usersentembed.set_footer(text='User tried to send')
 
@@ -131,7 +131,7 @@ class Miscellaneous(commands.Cog):
         user = self.bot.get_user(YOUR_USER_ID)
         guild = ctx.message.guild
         f = open("cogs/suggestions.txt", "a")
-        embed = discord.Embed(colour=randomhex(hex))
+        embed = discord.Embed(colour=randomhex())
         embed.add_field(name=f'**Author:** <@{message.author.id}> - {message.author.id}', value=f'\uFEFF')
         embed.add_field(name=f'**Server:** {guild.name} - {guild.id}', value=f'\uFEFF')
         embed.add_field(name=f'**Suggestion:** {suggestion}', value=f'\uFEFF')
@@ -145,13 +145,14 @@ class Miscellaneous(commands.Cog):
         """displays the bot's credits. included is anybody who helped me make this bot and any code that was copied from other bots."""
         embed = discord.Embed(title='Credits',
                               description="credits, anybody listed here helped me either directly or indirectly in the making of this bot.",
-                              colour=randomhex(hex))
+                              colour=randomhex())
         embed.set_author(name='B1nzyBot',
                          url='https://takeb1nzyto.space',
                          icon_url='https://cdn.discordapp.com/attachments/794323054317928478/794385737235562506/image.png')
 
         embed.add_field(name='Inspiration', value='[Click here](https://github.com/twotxh)')
         embed.add_field(name='More inspiration', value='[Click here](https://takeb1nzyto.space)')
+        embed.add_field(name="Code contributions", value="[Click here](https://github.com/pravda-cancri)")
 
         await ctx.send(embed=embed)
 
