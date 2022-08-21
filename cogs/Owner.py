@@ -29,7 +29,6 @@ class OwnerCog(commands.Cog):
     async def cogload(self, ctx, *, cog: str):
         """Command which Loads a Module.
         must be loaded like: cogs.owner"""
-
         try:
             self.bot.load_extension(cog)
         except Exception as e:
@@ -44,7 +43,6 @@ class OwnerCog(commands.Cog):
     async def cogunload(self, ctx, *, cog: str):
         """Command which Unloads a Module.
         Remember to use dot path. e.g: cogs.owner"""
-
         try:
             self.bot.unload_extension(cog)
         except Exception as e:
@@ -59,7 +57,6 @@ class OwnerCog(commands.Cog):
     async def cogreload(self, ctx, *, cog: str):
         """Command which Reloads a Module.
         Remember to use dot path. e.g: cogs.owner"""
-
         try:
             self.bot.unload_extension(cog)
             self.bot.load_extension(cog)
